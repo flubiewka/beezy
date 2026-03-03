@@ -10,55 +10,65 @@
   <link href="../css/style.css" rel="stylesheet" type="text/css">
 </head>
   <body>
-<div class="gui">
-<div class="color_1 outline" id="gui-top">
-    <div class="color_3" id="gui-top-account">
-      <button type="button" class="acc-button">konto<br>
+<div class="background color_1"> </div>
+<div id="layout">
+  <div class="color_1 outline" id="layout-top">
+    <div class="color_3" id="top-account">
+      <button type="button" id="my-acc-button">konto<br>
       </button>
     </div>
   </div>
-  <div id="gui-bottom">
-    <div class="color_1 outline" id="gui-bottom-left">
-      <div class="left-button-div color_3">
-        <button type="button" class="left-button-TEMPLATE" id="btn-messages">wiadomosci<br>
+  <div id="layout-middle">
+    <div class="color_1 outline" id="layout-left">
+      <div class="color_3">
+        <button type="button" id="btn-messages">wiadomosci<br>
         </button>
       </div>
-      <div class="left-button-div color_3">
-        <button type="button" class="left-button-TEMPLATE" id="btn-users">pracownicy<br>
+      <div class="color_3">
+        <button type="button" id="btn-users">pracownicy<br>
         </button>
       </div>
-      <div class="left-button-div color_3">
-        <button type="button" class="left-button-TEMPLATE" id="btn-report">raport<br>
+      <div class="color_3">
+        <button type="button" id="btn-report">raport<br>
         </button>
       </div>
-      <div class="left-button-div color_3">
-        <button type="button" class="left-button-TEMPLATE" id="btn-calendar">kalendarz<br>
+      <div class="color_3">
+        <button type="button" id="btn-calendar">kalendarz<br>
         </button>
       </div>
-      <div class="left-button-div color_3">
-        <button type="button" class="left-button-TEMPLATE" id="btn-notifications">powiadomienia<br>
+      <div class="color_3">
+        <button type="button" id="btn-notifications">powiadomienia<br>
         </button>
 </div>
-<div class="left-button-div color_3">
-        <button type="button" class="left-button-TEMPLATE" id="btn-settings">ustawienia<br>
+<div class="color_3">
+        <button type="button" id="btn-settings">ustawienia<br>
         </button>
       </div>
     </div>
-    <div id="gui-bottom-content">
+    <div id="layout-content">
       <div id="content-messages">
-        <div class="content-list-TEMPLATE color_3">
+        <div class="content-list color_3">
           <div class="list-row color_4"></div>
         </div>
-<div class="content-box-TEMPLATE color_3" id="message-box">
-<div class="color_placeholder" id="message-box-bottom"> 
+<div class="content-box color_3" id="message-box">
+<div class="outline" id="message-box-top-layout">
+  <div class="color_placeholder">
+<button type="button" class="users-acc-button">ImieNazwisko<br>
+      </button>
+  </div>
+&nbsp;</div>
+<div class="color_2" id="message-box-chat"></div>
+<div class="outline" id="message-box-bottom-layout"> 
 <label for="textfield">Text Field:</label>
 <input name="textfield" type="text" class="textfield" id="message-bottom-text">
-<div class="color_placeholder" id="message-bottom-right-div"></div>
-  &nbsp;</div>
+<div class="color_placeholder">
+  <button type="button" id="btn-send-message">wiadomosci<br>
+  </button>
+</div>
+&nbsp;</div>
 </div>
 </div>
-<div class="color_2" id="content-background"> </div>
-    </div>
+</div>
 </div>
 </div>
 <!-- body code goes here -->
