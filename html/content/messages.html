@@ -1,0 +1,2 @@
+<h1>Wiadomosci</h1>
+<div>KONTENT</div>
