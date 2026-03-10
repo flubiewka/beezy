@@ -1,237 +1,508 @@
  @charset "utf-8";
+
 *{
-	/*outline: 10px solid black;*/
-	font-family: 'ABeeZee', sans-serif;
+
+    outline: 1px solid red;
+
+    font-family: 'ABeeZee', sans-serif;
+
     font-style: italic;
+
 }
+
+
 
 @font-face {
+
     font-family: 'ABeeZee';
+
     src: url('../fonts/abeezee.italic.ttf') format('truetype');
+
     font-style: italic;
+
     font-weight: normal;
+
 }
+
+
 
 .box-TEMPLATE{
-	display: flex;
-	border-radius: 20px;
-	-webkit-box-shadow: 1px 1px 10px -5px;
-	box-shadow: 1px 1px 10px -5px;
+
+    display: flex;
+
+    /* border-radius: 20px 0 0 20px; */
+
+    /* border-bottom-right-radius: 0px; */
+
+    -webkit-box-shadow: 1px 1px 10px -5px;
+
+    box-shadow: 5px 5px 10px -5px;
+
 }
+
 .outline{
-	outline: 1px solid #3DC2EC; /*COLOR4*/
+
+    outline: 1px solid #3DC2EC; /*COLOR4*/
+
 }
+
 .color_1{ background-color: #818181; }
+
 .color_2{ background-color: #F1F1F1; }
+
 .color_3{ background-color: #E2E2E2; }
+
 .color_4{ background-color: #D3D3D3; }
+
 .color_5{ background-color: #C4C4C4; }
+
 .color_6{ background-color: #B5B5B5; }
+
 .color_placeholder{
-	border: 3px dashed #F0B7FF;
+
+    outline: 2px dashed rgb(255, 0, 191);
+
 }
+
 /*///////////////////////////////////////////////////////*/
+
 .login-box {
-	display: flex;
-	position: absolute;
-	flex-direction: column;
-	background-color: aliceblue;
-	align-items: center;
-	width: 300px;
-	height: 300px;
-	
-	top: 50%; 
-	left: 50%; 
-	transform: translate(-50%, -50%);
+
+    display: flex;
+
+    position: absolute;
+
+    flex-direction: column;
+
+    background-color: aliceblue;
+
+    align-items: center;
+
+    width: 300px;
+
+    height: 300px;
+
+   
+
+    top: 50%;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
 }
+
 #login-box-text  {
-	font-size: 25px;
-	padding: 10px;
-	margin-top: 30px;
+
+    font-size: 25px;
+
+    padding: 10px;
+
+    margin-top: 30px;
+
 }
+
 #login-box-inputs {
-	display: flex;
-	flex-direction: column;
-	padding-top: 33px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding-top: 33px;
+
 }
+
 #login-background{
-	height: 100vh;
-	widows: 100vw;
+
+    height: 100vh;
+
+    widows: 100vw;
+
 }
+
 /*///////////////////////////////////////////////////////*/
+
 #my-acc-button{
-	width: 100%;
-	height: 100%;
+
+    width: 100%;
+
+    height: 100%;
+
 }
+
 /*///////////////////////////////////////////////////////*/
+
+
 
 #app-background {
-	position: fixed;
-	background-color: #181818;
-	height: 100vh;
-	width: 100vw;
-	z-index: -1;
+
+    position: fixed;
+
+    background-color: #181818;
+
+    height: 100vh;
+
+    width: 100vw;
+
+    z-index: -1;
+
 }
+
+
 
 #layout {
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    height: 100vh;
+
 }
+
 #layout-top {
-	display: flex;
-	align-items: center;
-	width: 100vw;
-	height: 60px;
-	margin: auto;
-	z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100vw;
+
+    height: 60px;
+
+    margin: auto;
+
+    z-index: 2;
+
 }
+
+
 
 #top-logo {
-	display: flex;
-	height: 35px;
-	width: 35px;
-	margin-left: 17.5px;
+
+    display: flex;
+
+    height: 35px;
+
+    width: 35px;
+
+    margin-left: 17.5px;
+
 }
+
 #top-account  {
-	display: flex;
-	align-items: center;
-	width: 150px;
-	height: 100%;
-	margin-left: auto;
-	margin-right: 20px;
-	z-index: 3;
+
+    display: flex;
+
+    align-items: center;
+
+    width: 150px;
+
+    height: 100%;
+
+    margin-left: auto;
+
+    margin-right: 20px;
+
+    z-index: 3;
+
 }
+
 #layout-middle{
-	display: flex;
-	flex-direction: row;
-	height: 100vh;
+
+    display: flex;
+
+    flex-direction: row;
+
+    height: 100vh;
+
 }
+
 #layout-left {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 70px;
-	left: 0;
-	z-index: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    width: 70px;
+
+    left: 0;
+
+    z-index: 1;
+
 }
+
+
 
 #layout-left > div{
-	display: flex;
-	align-items: center;
-	height: 60px;
-	width: 100%;
-	z-index: 3;
+
+    display: flex;
+
+    align-items: center;
+
+    height: 60px;
+
+    width: 100%;
+
+    z-index: 3;
+
 }
+
+
 
 #layout-left > div > button{
-	width: 100%;
-	height: 100%;
+
+    width: 100%;
+
+    height: 100%;
+
 }
+
+
 
 #layout-content {
-	display: flex;
-	flex: 1;
-	z-index: 0;
+
+    display: flex;
+
+    flex: 1;
+
+    z-index: 0;
+
 }
+
+
 
 .content-list {
-	display: flex;
-	flex-direction: column;
-	flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+
 }
+
 .list-chat{
-	display: flex;
-	width: 100%;
-	height: 80px;
-	align-items: center;
+
+    display: flex;
+
+    width: 100%;
+
+    height: 80px;
+
+    align-items: center;
+
 }
+
+
 
 .list-chat-image{
-	width: 60px;
-	height: 60px;
-	margin-right: 10px;
-	margin-left: 10px;
+
+    width: 60px;
+
+    height: 60px;
+
+    margin-right: 10px;
+
+    margin-left: 10px;
+
 }
+
+
 
 .list-chat-texts{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	flex: 1;
-	height: 100%;
-	margin-right: 10px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    flex: 1;
+
+    height: 100%;
+
+    margin-right: 10px;
+
 }
+
+
 
 .list-chat-username{
-	font-size: 23px;
-	
+
+    font-size: 23px;
+
+   
+
 }
+
+
 
 .list-chat-last-message{
-	font-size: 14px;
-	
+
+    font-size: 14px;
+
+   
+
 }
+
+
 
 #content-messages, #content-users, #content-report, #content-calendar, #content-notifications, #content-settings{
-	display: flex;
-	gap: 10px;
-	height: 100%;
-	width: 100%;
+
+    display: flex;
+
+    gap: 10px;
+
+    height: 100%;
+
+    width: 100%;
+
 }
+
 #content-users, #content-report, #content-calendar, #content-notifications, #content-settings{
-	display: none;
+
+    display: none;
+
 }
+
 #message-box{
-	display: flex;
-	flex-direction: column;
-	width: 82%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    width: 82%;
+
 }
+
 #message-box-bottom-layout, #message-box-top-layout{
-	display: flex;
-	align-items: center;
-	width: 100%;
-	height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    height: 70px;
+
 }
+
 .message-box-chat{
-	display: flex;
-	flex: 1;
+
+    display: flex;
+
+    flex: 1;
+
 }
+
+
+
+
+
+.MESSAGE-HEADER{
+
+    display: flex;
+
+    flex-direction: row;
+
+}
+
+.MESSAGE{
+
+    display: flex;
+
+    height: 200px;
+
+    flex-direction: column;
+
+}
+
+
+
+
+
 .textfield{
-	border-radius: 20px;
+
+    border-radius: 20px;
+
+    margin-left: 40px;
+
+    margin-right: 40px;
+
+   
+
 }
+
 #message-bottom-text{
-	display: flex;
-	flex: 1;
-	height: 40px;
+
+    display: flex;
+
+    flex: 1;
+
+    height: 40px;
+
 }
+
 #message-box-bottom-layout > div{
-	display: flex;
-	height: 100%;
-	width: 70px;
-	margin-left: 10px;
-	margin-right: 10%;
-	/*min-width: 100px;*/
+
+    display: flex;
+
+    height: 100%;
+
+    width: 70px;
+
+    margin-left: 10px;
+
+    margin-right: 10%;
+
+    /*min-width: 100px;*/
+
 }
+
+
 
 #message-box-top-layout > div{
-	display: flex;
-	height: 100%;
-	width: 250px;
-	margin-left: 10px;
-	margin-right: 10%;
-	/*min-width: 100px;*/
+
+    display: flex;
+
+    height: 100%;
+
+    width: 250px;
+
+    margin-left: 10px;
+
+    margin-right: 10%;
+
+    /*min-width: 100px;*/
+
 }
 
+
+
 #message-box-top-layout > div > button{
-	height: 100%;
-	width: 100%;
+
+    height: 100%;
+
+    width: 100%;
+
 }
+
 #btn-send-message{
-	width: 100%;
-	height: 100%;
+
+    width: 100%;
+
+    height: 100%;
+
 }
+
 #message-box-chat{
-	display: flex;
-	flex: 1
+
+    display: flex;
+
+    flex: 1
+
 }
+
