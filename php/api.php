@@ -4,44 +4,43 @@ require_once 'db.php';
 
 header('Content-Type: application/json');
 
-if (!isset($_SESSION['user_email'])) {
-    echo json_encode(['success' => false, 'error' => 'Brak sesji']);
+function respond($data) {
+    echo json_encode($data);
     exit;
+}
+
+if (!isset($_SESSION['user_email'])) {
+    respond(['success' => false, 'error' => 'Brak sesji']);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    echo json_encode(getMessages($pdo));
-    exit;
+    respond(getMessages($pdo));
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    echo json_encode(['success' => false, 'error' => 'Nieobslugiwany request']);
-    exit;
+    respond(['success' => false, 'error' => 'Nieobslugiwany request']);
 }
 
 $action = $_POST['action'] ?? '';
 
-if ($action === 'delete_message') {
-    $messageId = (int)($_POST['message_id'] ?? 0);
-    if ($messageId <= 0) {
-        echo json_encode(['success' => false, 'error' => 'Zle ID']);
-        exit;
-    }
+switch ($action) {
+    case 'delete_message':
+        $messageId = (int)($_POST['message_id'] ?? 0);
+        if ($messageId <= 0) {
+            respond(['success' => false, 'error' => 'Zle ID']);
+        }
 
-    echo json_encode(['success' => deleteMessage($pdo, $messageId, $_SESSION['user_email'])]);
-    exit;
+        respond(['success' => deleteMessage($pdo, $messageId, $_SESSION['user_email'])]);
+
+    case 'send_message':
+        $content = trim($_POST['content'] ?? '');
+        if ($content === '') {
+            respond(['success' => false, 'error' => 'Pusta wiadomosc']);
+        }
+
+        respond(['success' => saveMessage($pdo, $_SESSION['user_email'], $content)]);
+
+    default:
+        respond(['success' => false, 'error' => 'Nieznana akcja']);
 }
-
-if ($action === 'send_message') {
-    $content = trim($_POST['content'] ?? '');
-    if ($content === '') {
-        echo json_encode(['success' => false, 'error' => 'Pusta wiadomosc']);
-        exit;
-    }
-
-    echo json_encode(['success' => saveMessage($pdo, $_SESSION['user_email'], $content)]);
-    exit;
-}
-
-echo json_encode(['success' => false, 'error' => 'Nieznana akcja']);
 ?>

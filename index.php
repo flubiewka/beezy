@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h1 class="login-title">Beezy</h1>
 
             <?php if ($error): ?>
-                <div style="color: red; font-size: 14px; margin-bottom: 10px;">
+                <div class="login-error">
                     <?php echo htmlspecialchars($error); ?>
                 </div>
             <?php endif; ?>

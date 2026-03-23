@@ -18,11 +18,33 @@
             .replaceAll("'", "&#039;");
     }
 
-    function refreshMessages() {
-        fetch("api.php")
-            .then(function (res) {
+    function scrollToBottom() {
+        area.scrollTop = area.scrollHeight;
+    }
+
+    function request(action, fields) {
+        if (!action) {
+            return fetch("api.php").then(function (res) {
                 return res.json();
-            })
+            });
+        }
+
+        const data = new FormData();
+        data.append("action", action);
+
+        if (fields) {
+            for (const key in fields) {
+                data.append(key, fields[key]);
+            }
+        }
+
+        return fetch("api.php", { method: "POST", body: data }).then(function (res) {
+            return res.json();
+        });
+    }
+
+    function refreshMessages() {
+        request()
             .then(function (messages) {
                 let html = "";
 
@@ -31,7 +53,7 @@
                     const deleteBtn = mine
                         ? '<button type="button" class="message-delete-btn color_3" data-delete-id="' +
                           Number(msg.ID_MESSAGE) +
-                          '">usun</button>'
+                          '">&#128465;</button>'
                         : "";
 
                     html +=
@@ -54,6 +76,7 @@
                 }
 
                 area.innerHTML = html;
+                scrollToBottom();
             })
             .catch(function () {});
     }
@@ -66,14 +89,7 @@
             return;
         }
 
-        const data = new FormData();
-        data.append("action", "send_message");
-        data.append("content", content);
-
-        fetch("api.php", { method: "POST", body: data })
-            .then(function (res) {
-                return res.json();
-            })
+        request("send_message", { content: content })
             .then(function () {
                 input.value = "";
                 refreshMessages();
@@ -92,14 +108,7 @@
             return;
         }
 
-        const data = new FormData();
-        data.append("action", "delete_message");
-        data.append("message_id", String(messageId));
-
-        fetch("api.php", { method: "POST", body: data })
-            .then(function (res) {
-                return res.json();
-            })
+        request("delete_message", { message_id: String(messageId) })
             .then(function () {
                 refreshMessages();
             })

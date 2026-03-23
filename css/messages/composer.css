@@ -1,0 +1,31 @@
+.message-footer {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    padding: 0 40px;
+    gap: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.message-input {
+    display: flex;
+    flex: 1;
+    height: 40px;
+    border-radius: 20px;
+    padding: 0 15px;
+    border: 1px solid #ddd;
+    font-family: inherit;
+    font-style: inherit;
+}
+
+.message-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+.message-send-btn {
+    width: 70px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 8px;
+}

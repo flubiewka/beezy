@@ -25,7 +25,7 @@ function loginUser($pdo, $login, $password) {
     }
 
     try {
-        $stmt = $pdo->prepare('SELECT * FROM USERS WHERE LOGIN = ?');
+        $stmt = $pdo->prepare('SELECT LOGIN, PASSWORD, IMIE, NAZWISKO FROM USERS WHERE LOGIN = ?');
         $stmt->execute([$login]);
         $user = $stmt->fetch();
 
@@ -33,8 +33,7 @@ function loginUser($pdo, $login, $password) {
             return 'Użytkownik nie znaleziony';
         }
 
-        $ok = password_verify($password, $user['PASSWORD']) || $user['PASSWORD'] === $password;
-        if (!$ok) {
+        if (!password_verify($password, $user['PASSWORD']) && $user['PASSWORD'] !== $password) {
             return 'Błędny login lub hasło';
         }
 
@@ -44,17 +43,21 @@ function loginUser($pdo, $login, $password) {
     }
 }
 
+function getOrCreateGeneralChatId($pdo) {
+    $chatId = (int)$pdo->query('SELECT ID_CHAT FROM CHAT ORDER BY ID_CHAT ASC LIMIT 1')->fetchColumn();
+    if ($chatId > 0) {
+        return $chatId;
+    }
+
+    $createChat = $pdo->prepare('INSERT INTO CHAT (CHAT_NAME, IS_GROUP) VALUES (?, ?)');
+    $createChat->execute(['General', 0]);
+
+    return (int)$pdo->lastInsertId();
+}
+
 function saveMessage($pdo, $sender_login, $content) {
     try {
-        $chat = $pdo->query('SELECT ID_CHAT FROM CHAT ORDER BY ID_CHAT ASC LIMIT 1')->fetch();
-
-        if ($chat && isset($chat['ID_CHAT'])) {
-            $chatId = (int)$chat['ID_CHAT'];
-        } else {
-            $createChat = $pdo->prepare('INSERT INTO CHAT (CHAT_NAME, IS_GROUP) VALUES (?, ?)');
-            $createChat->execute(['General', 0]);
-            $chatId = (int)$pdo->lastInsertId();
-        }
+        $chatId = getOrCreateGeneralChatId($pdo);
 
         $stmt = $pdo->prepare("INSERT INTO MESSAGES (ID_CHAT, SENDER_LOGIN, CONTENT, SENT_AT)
                               VALUES (?, ?, ?, NOW())");
@@ -64,26 +67,17 @@ function saveMessage($pdo, $sender_login, $content) {
     }
 }
 
-function getMessages($pdo, $limit = 50) {
+function getMessages($pdo) {
     try {
-        $chat = $pdo->query('SELECT ID_CHAT FROM CHAT ORDER BY ID_CHAT ASC LIMIT 1')->fetch();
-
-        if ($chat && isset($chat['ID_CHAT'])) {
-            $chatId = (int)$chat['ID_CHAT'];
-        } else {
-            $createChat = $pdo->prepare('INSERT INTO CHAT (CHAT_NAME, IS_GROUP) VALUES (?, ?)');
-            $createChat->execute(['General', 0]);
-            $chatId = (int)$pdo->lastInsertId();
-        }
-
-        $limit = max(1, (int)$limit);
+        $chatId = getOrCreateGeneralChatId($pdo);
 
         $stmt = $pdo->prepare("SELECT m.*, u.IMIE, u.NAZWISKO FROM MESSAGES m
-                              JOIN USERS u ON m.SENDER_LOGIN = u.LOGIN
-                              WHERE m.ID_CHAT = ?
-                              ORDER BY m.SENT_AT ASC LIMIT $limit");
+                                  JOIN USERS u ON m.SENDER_LOGIN = u.LOGIN
+                                  WHERE m.ID_CHAT = ?
+                                  ORDER BY m.SENT_AT ASC");
         $stmt->execute([$chatId]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $stmt->fetchAll();
     } catch (PDOException $e) {
         return [];
     }
