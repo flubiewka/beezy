@@ -8,6 +8,8 @@
     --color-gray-medium: #C4C4C4;
     --color-gray-dark: #B5B5B5;
     --color-accent: #3DC2EC;
+    --color-yellow: #fecd34;
+    --color-yellow-light: rgba(254, 205, 52, 0.2);
     --color-error: rgb(255, 0, 191);
 }
 * {
