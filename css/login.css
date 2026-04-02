@@ -34,15 +34,58 @@
     }
 }
 
+@keyframes ambientFloatA {
+    0% { transform: rotate(-14deg) translateY(0); }
+    50% { transform: rotate(-12deg) translateY(6px); }
+    100% { transform: rotate(-14deg) translateY(0); }
+}
+
+@keyframes ambientFloatB {
+    0% { transform: rotate(18deg) translateY(0); }
+    50% { transform: rotate(16deg) translateY(-6px); }
+    100% { transform: rotate(18deg) translateY(0); }
+}
+
 body {
     min-height: 100vh;
+    position: relative;
+    overflow: hidden;
     background:
-        radial-gradient(circle at 12% 10%, rgba(244, 196, 0, 0.28) 0 16%, transparent 45%),
-        radial-gradient(circle at 88% 14%, rgba(47, 111, 202, 0.22) 0 18%, transparent 46%),
-        linear-gradient(160deg, var(--login-gray-100) 0%, #e9edf2 55%, #dde4ec 100%);
+        radial-gradient(circle at 10% 15%, rgba(61, 194, 236, 0.28), transparent 38%),
+        radial-gradient(circle at 85% 90%, rgba(254, 205, 52, 0.32), transparent 40%),
+        linear-gradient(140deg, #f6f7f8 0%, #eceff1 52%, #e6eaee 100%);
     background-repeat: no-repeat;
-    background-size: 120% 120%, 120% 120%, 100% 100%;
+    background-size: 100% 100%, 100% 100%, 100% 100%;
     animation: bgDrift 14s ease-in-out infinite;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(2px);
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::before {
+    width: 260px;
+    height: 260px;
+    top: -90px;
+    right: -70px;
+    background: linear-gradient(135deg, #ffd86f, #fc6262);
+    animation: ambientFloatA 7s ease-in-out infinite;
+}
+
+body::after {
+    width: 230px;
+    height: 230px;
+    left: -70px;
+    bottom: -90px;
+    background: linear-gradient(145deg, #70e1f5, #3dc2ec);
+    animation: ambientFloatB 8s ease-in-out infinite;
 }
 
 #app-background {
@@ -54,6 +97,8 @@ body {
     min-height: 100vh;
     place-items: center;
     padding: 24px;
+    position: relative;
+    z-index: 1;
 }
 
 .login-box {

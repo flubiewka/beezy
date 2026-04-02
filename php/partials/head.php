@@ -9,3 +9,4 @@
 <link href="../css/messages/messages.css" rel="stylesheet">
 <link href="../css/messages/composer.css" rel="stylesheet">
 <link href="../css/messages/responsive.css" rel="stylesheet">
+<link href="../css/users/layout.css" rel="stylesheet">
