@@ -1,0 +1,56 @@
+@media screen and (max-width: 768px) {
+    .content-section {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .chat-list {
+        max-width: none;
+        width: 100%;
+        height: 120px;
+        min-height: 120px;
+        flex: none;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .chat-item {
+        width: auto;
+        min-width: 200px;
+        height: 100%;
+    }
+
+    .message-container {
+        flex: 1;
+        gap: 0;
+    }
+
+    .message-header {
+        height: 50px;
+        padding: 0 15px;
+    }
+
+    .message-header-user {
+        width: auto;
+        flex: 1;
+    }
+
+    .messages-area {
+        padding: 15px;
+    }
+
+    .message {
+        max-width: 90%;
+    }
+
+    .message-footer {
+        height: 60px;
+        padding: 0 15px;
+    }
+
+    .message-send-btn {
+        width: 60px;
+    }
+}
