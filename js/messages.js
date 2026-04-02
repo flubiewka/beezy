@@ -64,14 +64,18 @@
 
                     const cssClass = (mine ? "sent" : "received") + (isDeleted ? " deleted" : "");
 
+                    const headerHtml = mine
+                        ? '<span class="message-author">' + esc(msg.IMIE) + " " + esc(msg.NAZWISKO) + "</span>" +
+                        '<div class="message-avatar color_placeholder"></div>' +
+                        deleteBtn
+                        : '<div class="message-avatar color_placeholder"></div>' +
+                        '<span class="message-author">' + esc(msg.IMIE) + " " + esc(msg.NAZWISKO) + "</span>" +
+                        deleteBtn;
+
                     html +=
                         '<div class="message ' + cssClass + '">' +
                         '<div class="message-header-info">' +
-                        '<div class="message-avatar color_placeholder"></div>' +
-                        '<span class="message-author">' +
-                        esc(msg.IMIE) + " " + esc(msg.NAZWISKO) +
-                        "</span>" +
-                        deleteBtn +
+                        headerHtml +
                         "</div>" +
                         '<div class="message-content">' + contentHtml + "</div>" +
                         "</div>";

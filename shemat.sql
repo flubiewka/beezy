@@ -53,5 +53,6 @@ CREATE TABLE MESSAGES (
     FOREIGN KEY (SENDER_LOGIN) REFERENCES USERS (LOGIN)
 );
 
-INSERT INTO USERS VALUES("login1@", "123", "Jan", "Kowalski", 1 , "available" );
-INSERT INTO USERS VALUES("login2@", "123", "Bartek", "Malinowski", 1 , "available" );
+INSERT INTO USERS VALUES("login1@pl", "123", "Jan", "Kowalski", 1 , "available" );
+INSERT INTO USERS VALUES("login2@pl", "123", "Bartek", "Malinowski", 1 , "available" );
+INSERT INTO USERS VALUES("login3@pl", "123", "Kuba", "Buba", 1 , "available" );

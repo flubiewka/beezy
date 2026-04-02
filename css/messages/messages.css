@@ -1,20 +1,18 @@
 .message {
     display: flex;
     flex-direction: column;
-    max-width: 70%;
+    max-width: 40%;
     gap: 5px;
 }
 
 .message.sent {
     align-self: flex-end;
+    align-items: flex-end;
 }
 
 .message.received {
     align-self: flex-start;
-}
-
-.message.deleted {
-
+    align-items: flex-start;
 }
 
 .message-header-info {
