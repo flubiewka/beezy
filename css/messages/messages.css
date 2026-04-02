@@ -1,16 +1,18 @@
 .message {
     display: flex;
     flex-direction: column;
-    max-width: 70%;
+    max-width: 40%;
     gap: 5px;
 }
 
 .message.sent {
     align-self: flex-end;
+    align-items: flex-end;
 }
 
 .message.received {
     align-self: flex-start;
+    align-items: flex-start;
 }
 
 .message-header-info {
@@ -53,6 +55,14 @@
 .message.received .message-content {
     background-color: var(--color-gray-lighter);
     color: black;
+}
+
+.message.deleted .message-content {
+    border: 2px dotted;
+    color: rgb(0, 0, 0);
+    opacity: 0.3;
+    font-style: italic;
+    user-select: none;
 }
 
 .message-delete-btn {

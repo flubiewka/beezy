@@ -48,6 +48,40 @@ CREATE TABLE MESSAGES (
     CONTENT TEXT NOT NULL,
     SENT_AT DATETIME DEFAULT CURRENT_TIMESTAMP,
     IS_URGENT BOOLEAN DEFAULT FALSE,
+    IS_DELETED BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (ID_CHAT) REFERENCES CHAT (ID_CHAT) ON DELETE CASCADE,
     FOREIGN KEY (SENDER_LOGIN) REFERENCES USERS (LOGIN)
 );
+
+INSERT INTO
+    USERS
+VALUES (
+        "login1@pl",
+        "123",
+        "Jan",
+        "Kowalski",
+        1,
+        "available"
+    );
+
+INSERT INTO
+    USERS
+VALUES (
+        "login2@pl",
+        "123",
+        "Bartek",
+        "Malinowski",
+        2,
+        "available"
+    );
+
+INSERT INTO
+    USERS
+VALUES (
+        "login3@pl",
+        "123",
+        "Kuba",
+        "Buba",
+        3,
+        "available"
+    );

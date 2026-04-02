@@ -38,9 +38,11 @@
             }
         }
 
-        return fetch("api.php", { method: "POST", body: data }).then(function (res) {
-            return res.json();
-        });
+        return fetch("api.php", { method: "POST", body: data }).then(
+            function (res) {
+                return res.json();
+            },
+        );
     }
 
     function refreshMessages() {
@@ -50,27 +52,49 @@
 
                 for (const msg of messages) {
                     const mine = (msg.SENDER_LOGIN || "") === me;
-                    const deleteBtn = mine
-                        ? '<button type="button" class="message-delete-btn color_3" data-delete-id="' +
-                          Number(msg.ID_MESSAGE) +
-                          '">&#128465;</button>'
-                        : "";
+                    const isDeleted =
+                        msg.IS_DELETED == 1 || msg.IS_DELETED === true;
+
+                    const deleteBtn =
+                        mine && !isDeleted
+                            ? '<button type="button" class="message-delete-btn color_3" data-delete-id="' +
+                              Number(msg.ID_MESSAGE) +
+                              '">&#128465;</button>'
+                            : "";
+
+                    const contentHtml = isDeleted
+                        ? '<em class="message-deleted-info">Wiadomość została usunięta</em>'
+                        : esc(msg.CONTENT);
+
+                    const cssClass =
+                        (mine ? "sent" : "received") +
+                        (isDeleted ? " deleted" : "");
+
+                    const headerHtml = mine
+                        ? '<span class="message-author">' +
+                          esc(msg.IMIE) +
+                          " " +
+                          esc(msg.NAZWISKO) +
+                          "</span>" +
+                          '<div class="message-avatar color_placeholder"></div>' +
+                          deleteBtn
+                        : '<div class="message-avatar color_placeholder"></div>' +
+                          '<span class="message-author">' +
+                          esc(msg.IMIE) +
+                          " " +
+                          esc(msg.NAZWISKO) +
+                          "</span>" +
+                          deleteBtn;
 
                     html +=
                         '<div class="message ' +
-                        (mine ? "sent" : "received") +
+                        cssClass +
                         '">' +
                         '<div class="message-header-info">' +
-                        '<div class="message-avatar color_placeholder"></div>' +
-                        '<span class="message-author">' +
-                        esc(msg.IMIE) +
-                        " " +
-                        esc(msg.NAZWISKO) +
-                        "</span>" +
-                        deleteBtn +
+                        headerHtml +
                         "</div>" +
                         '<div class="message-content">' +
-                        esc(msg.CONTENT) +
+                        contentHtml +
                         "</div>" +
                         "</div>";
                 }

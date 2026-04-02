@@ -85,7 +85,7 @@ function getMessages($pdo) {
 
 function deleteMessage($pdo, $messageId, $senderLogin) {
     try {
-        $stmt = $pdo->prepare('DELETE FROM MESSAGES WHERE ID_MESSAGE = ? AND SENDER_LOGIN = ?');
+        $stmt = $pdo->prepare('UPDATE MESSAGES SET IS_DELETED = TRUE, CONTENT = NULL WHERE ID_MESSAGE = ? AND SENDER_LOGIN = ?');
         $stmt->execute([(int)$messageId, $senderLogin]);
         return $stmt->rowCount() > 0;
     } catch (PDOException $e) {

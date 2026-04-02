@@ -42,7 +42,7 @@ if (!in_array($role, $allowedRoles, true)) {
 
                 <div class="field-row">
                     <label for="login">Login</label>
-                    <input type="text" id="login" name="login" autocomplete="username" required>
+                    <input type="email" id="login" name="login" autocomplete="username" required>
                 </div>
 
                 <div class="field-row">
