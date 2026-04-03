@@ -1,0 +1,119 @@
+#content-users {
+    padding: 30px;
+    width: 100%;
+}
+
+#content-users main {
+    display: flex;
+    flex-direction: row;
+    width: 100% ;
+    gap: 30px;
+}
+
+#content-users section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 33.33%;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 14px;
+    background: var(--users-card-bg);
+    border: 1px solid var(--users-card-border);
+    box-shadow: 0 12px 24px var(--users-card-shadow);
+    backdrop-filter: blur(10px);
+}
+
+#content-users .user-card {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 15px;
+}
+
+#content-users .chat-item-avatar {
+    width: 48px;
+    height: 48px;
+    margin-right: 12px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: var(--placeholder-bg);
+}
+
+#content-users .user-card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--users-divider);
+}
+#content-users .user-card:last-of-type::after {
+    display: none;
+}
+
+#content-users .user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+#content-users .user-info h3,
+#content-users .user-info p {
+    margin: 0;
+    color: var(--users-text);
+}
+
+#content-users .add {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--users-add-bg);
+    color: var(--users-add-text);
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#content-users .add:hover {
+    background: var(--users-add-hover-bg);
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px var(--users-add-hover-shadow);
+}
+
+#content-users .user-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-left: auto;
+}
+
+#content-users button img {
+    width: 20px;
+    height: 20px;
+}
+
+#content-users button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+#content-users button:hover {
+    background: var(--users-button-hover-bg);
+    transform: scale(1.1);
+    transform: translateY(-1px);
+}
+#content-users button.delete:hover{
+    background-color: var(--users-delete-hover-bg);
+}

@@ -1,0 +1,84 @@
+.message {
+    display: flex;
+    flex-direction: column;
+    max-width: 40%;
+    gap: 5px;
+}
+
+.message.sent {
+    align-self: flex-end;
+    align-items: flex-end;
+}
+
+.message.received {
+    align-self: flex-start;
+    align-items: flex-start;
+}
+
+.message-header-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.message-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+    background: var(--placeholder-bg);
+}
+
+.message-author {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.message-content {
+    padding: 10px 15px;
+    border-radius: 8px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    font-size: 14px;
+    line-height: 1.5;
+    min-width: 0;
+}
+
+.message.sent .message-content {
+    background: var(--message-sent-bg);
+    color: var(--message-sent-text);
+    border: 1px solid var(--message-sent-border);
+}
+
+.message.received .message-content {
+    background: var(--message-received-bg);
+    color: var(--message-received-text);
+    border: 1px solid var(--message-received-border);
+}
+
+.message.deleted .message-content {
+    border: 2px dotted;
+    color: var(--message-deleted-text);
+    opacity: 0.3;
+    font-style: italic;
+    user-select: none;
+}
+
+.message-delete-btn {
+    background: none;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    cursor: pointer;
+    font-size: 23px;
+    padding: 0;
+}
+.message-delete-btn img {
+    width: 16px;
+    height: 16px;
+}
