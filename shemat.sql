@@ -85,3 +85,47 @@ VALUES (
         3,
         "available"
     );
+
+INSERT INTO
+    USERS
+VALUES (
+        "login4@pl",
+        "123",
+        "Bartek",
+        "Januszewski",
+        1,
+        "available"
+    );
+
+INSERT INTO
+    USERS
+VALUES (
+        "login5@pl",
+        "123",
+        "Hanna",
+        "Fajfer",
+        2,
+        "available"
+    );
+
+INSERT INTO
+    USERS
+VALUES (
+        "login6@pl",
+        "123",
+        "Cezary",
+        "Ryba",
+        3,
+        "available"
+    );
+
+INSERT INTO
+    USERS
+VALUES (
+        "login7@pl",
+        "123",
+        "Agnieszka",
+        "Urbaniak",
+        1,
+        "available"
+    );
