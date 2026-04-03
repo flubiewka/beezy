@@ -1,0 +1,9 @@
+#content-calendar .calendar-shell {
+    padding: 30px;
+}
+
+@media (max-width: 768px) {
+    #content-calendar .calendar-shell {
+        padding: 16px;
+    }
+}

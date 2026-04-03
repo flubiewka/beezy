@@ -1,5 +1,5 @@
 ﻿<div id="content-notifications" class="content-section">
-    <div style="padding: 30px;">
+    <div class="notifications-shell">
         <h2>Powiadomienia</h2>
         
     </div>

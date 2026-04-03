@@ -11,6 +11,9 @@
 <link href="../css/messages/responsive.css" rel="stylesheet">
 <link href="../css/users/layout.css" rel="stylesheet">
 <link href="../css/settings.css" rel="stylesheet">
+<link href="../css/content/report.css" rel="stylesheet">
+<link href="../css/content/calendar.css" rel="stylesheet">
+<link href="../css/content/notifications.css" rel="stylesheet">
 
 <link id="theme-colors" href="../css/theme-light.css" rel="stylesheet">
 <script src="../js/theme.js"></script>

@@ -75,7 +75,7 @@ function getMonthlyWorkSummary($sessions, $viewerLogin) {
     return $summary;
 }
 
-function getWorkLogsByLogin($pdo, $login, $limit = 0) {
+function getWorkLogsByLogin($pdo, $login) {
     $sql = 'SELECT
                 ws.ID_SESSION,
                 ws.LOGIN,
@@ -89,15 +89,8 @@ function getWorkLogsByLogin($pdo, $login, $limit = 0) {
             WHERE ws.LOGIN = ?
             ORDER BY ws.START_TIME DESC';
 
-    $params = [$login];
-
-    if ((int)$limit > 0) {
-        $sql .= ' LIMIT ?';
-        $params[] = (int)$limit;
-    }
-
     $stmt = $pdo->prepare($sql);
-    $stmt->execute($params);
+    $stmt->execute([$login]);
     return $stmt->fetchAll();
 }
 

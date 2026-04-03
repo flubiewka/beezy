@@ -1,0 +1,9 @@
+#content-notifications .notifications-shell {
+    padding: 30px;
+}
+
+@media (max-width: 768px) {
+    #content-notifications .notifications-shell {
+        padding: 16px;
+    }
+}

@@ -26,9 +26,11 @@ function handleGet($pdo, $userLogin) {
     if ($action === 'get_work_logs') {
         $requestedLogin = trim((string)($_GET['login'] ?? ''));
         $targetLogin = $requestedLogin !== '' ? $requestedLogin : (string)$userLogin;
-        $canViewAll = canViewAllSessions($_SESSION['role_id'] ?? 0);
+        $roleId = (int)($_SESSION['role_id'] ?? 0);
+        $canViewAll = canViewAllSessions($roleId);
 
-        if (!$canViewAll && $targetLogin !== (string)$userLogin) {
+        $isOwnLogs = $targetLogin === (string)$userLogin;
+        if (!$canViewAll && !$isOwnLogs) {
             respond(['success' => false, 'error' => 'Brak uprawnien']);
         }
 

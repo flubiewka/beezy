@@ -117,3 +117,42 @@
 #content-users button.delete:hover{
     background-color: var(--users-delete-hover-bg);
 }
+
+@media (max-width: 1180px) {
+    #content-users main {
+        flex-wrap: wrap;
+    }
+
+    #content-users section {
+        width: calc(50% - 15px);
+    }
+}
+
+@media (max-width: 768px) {
+    #content-users {
+        padding: 16px;
+    }
+
+    #content-users main {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    #content-users section {
+        width: 100%;
+        padding: 12px;
+    }
+
+    #content-users .user-card {
+        align-items: flex-start;
+        gap: 10px;
+        padding-bottom: 12px;
+    }
+
+    #content-users .user-actions {
+        margin-left: 0;
+        width: 100%;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+    }
+}

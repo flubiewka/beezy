@@ -18,8 +18,33 @@
 
     .chat-item {
         width: auto;
-        min-width: 200px;
+        min-width: 170px;
+        max-width: 220px;
         height: 100%;
+        padding: 8px;
+        align-items: center;
+        gap: 8px;
+        overflow: hidden;
+    }
+
+    .chat-item-avatar {
+        width: 44px;
+        height: 44px;
+        margin-right: 0;
+    }
+
+    .chat-item-info {
+        gap: 3px;
+    }
+
+    .chat-item-name {
+        font-size: 14px;
+        line-height: 1.2;
+    }
+
+    .chat-item-role {
+        font-size: 11px;
+        line-height: 1.2;
     }
 
     .message-container {

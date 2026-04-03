@@ -1,0 +1,122 @@
+#content-raport .report-shell {
+    padding: 30px;
+}
+
+#content-raport .report-summary {
+    margin: 16px 0;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+#content-raport .report-table-wrap,
+#content-raport .report-day-history-wrap,
+#content-raport .report-all-logs-wrap {
+    overflow-x: auto;
+}
+
+#content-raport .report-main-table,
+#content-raport .report-day-history-table,
+#content-raport .report-all-logs-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#content-raport .report-main-table th,
+#content-raport .report-main-table td {
+    text-align: left;
+    padding: 8px;
+}
+
+#content-raport .report-main-table thead th {
+    border-bottom: 1px solid #ccc;
+}
+
+#content-raport .report-main-table tbody td {
+    border-bottom: 1px solid #eee;
+}
+
+#content-raport tr[data-day-row="1"] {
+    vertical-align: top;
+}
+
+#content-raport .report-day {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+#content-raport .report-activity {
+    font-size: 12px;
+    margin-top: 4px;
+    color: #666;
+}
+
+#content-raport .report-activity.is-active {
+    color: #0a7f32;
+}
+
+#content-raport .report-day-details {
+    margin-top: 8px;
+}
+
+#content-raport .report-day-summary {
+    cursor: pointer;
+}
+
+#content-raport .report-day-history-wrap {
+    margin-top: 10px;
+}
+
+#content-raport .report-day-history-table th,
+#content-raport .report-day-history-table td,
+#content-raport .report-all-logs-table th,
+#content-raport .report-all-logs-table td {
+    text-align: left;
+    padding: 6px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+#content-raport .report-day-history-table thead th,
+#content-raport .report-all-logs-table thead th {
+    border-bottom-color: #ddd;
+}
+
+#content-raport .load-all-logs-btn,
+#content-raport .all-logs-container {
+    margin-top: 10px;
+}
+
+#content-raport .report-all-activity {
+    font-size: 12px;
+    margin-bottom: 8px;
+    color: #666;
+}
+
+#content-raport .report-all-activity.is-active {
+    color: #0a7f32;
+}
+
+@media (max-width: 768px) {
+    #content-raport .report-shell {
+        padding: 16px;
+    }
+
+    #content-raport .report-main-table,
+    #content-raport .report-day-history-table,
+    #content-raport .report-all-logs-table {
+        font-size: 13px;
+    }
+
+    #content-raport .report-main-table th,
+    #content-raport .report-main-table td,
+    #content-raport .report-day-history-table th,
+    #content-raport .report-day-history-table td,
+    #content-raport .report-all-logs-table th,
+    #content-raport .report-all-logs-table td {
+        padding: 6px;
+    }
+
+    #content-raport .load-all-logs-btn {
+        width: 100%;
+    }
+}

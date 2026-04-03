@@ -1,5 +1,5 @@
 ﻿<div id="content-calendar" class="content-section">
-    <div style="padding: 30px;">
+    <div class="calendar-shell">
         <h2>Kalendarz</h2>
         
     </div>

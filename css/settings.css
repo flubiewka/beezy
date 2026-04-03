@@ -88,3 +88,23 @@
 .theme-switch input:checked + .theme-switch-slider::before {
     transform: translateX(22px);
 }
+
+@media (max-width: 768px) {
+    #content-settings {
+        padding: 16px;
+    }
+
+    .settings-card {
+        max-width: 100%;
+        padding: 14px;
+    }
+
+    .settings-row select {
+        max-width: 100%;
+    }
+
+    .theme-toggle-row {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
