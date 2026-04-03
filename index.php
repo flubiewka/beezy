@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['imie'] = $result['IMIE'];
         $_SESSION['nazwisko'] = $result['NAZWISKO'];
         $_SESSION['role_id'] = $result['ROLE_ID'];
+        startWorkSession($pdo, $result['LOGIN']);
         header('Location: php/app.php');
         exit;
     } else {
@@ -37,6 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <link href="css/common.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
+
+    <link id="theme-colors" href="/me-u/css/theme-light.css" rel="stylesheet">
+    <script src="js/theme.js"></script>
 </head>
 <body>
     <div id="app-background"></div>

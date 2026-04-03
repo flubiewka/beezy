@@ -1,0 +1,93 @@
+:root {
+    --theme-name: "dark";
+
+    --text-primary: #d8e8ff;
+    --text-secondary: #a9c6ee;
+    --text-strong: #eef6ff;
+    --text-link: #7ab6ff;
+    --text-on-danger: #ffffff;
+
+    --danger-bg: #b34f57;
+
+    --surface-1: rgba(35, 53, 79, 0.62);
+    --surface-2: rgba(46, 67, 99, 0.80);
+    --surface-3: rgba(56, 80, 117, 0.66);
+    --surface-4: rgba(50, 72, 106, 0.56);
+    --surface-5: rgba(43, 63, 93, 0.52);
+    --surface-6: rgba(36, 54, 82, 0.50);
+
+    --page-bg-radial-1: radial-gradient(circle at 10% 14%, rgba(76, 131, 214, 0.24), transparent 35%);
+    --page-bg-radial-2: radial-gradient(circle at 86% 84%, rgba(46, 97, 176, 0.22), transparent 37%);
+    --page-bg-main: linear-gradient(140deg, #0e1827 0%, #111d2f 55%, #13233a 100%);
+
+    --app-bg-radial-1: radial-gradient(circle at 12% 20%, rgba(76, 131, 214, 0.26), transparent 38%);
+    --app-bg-radial-2: radial-gradient(circle at 84% 82%, rgba(46, 97, 176, 0.24), transparent 36%);
+    --app-bg-main: linear-gradient(145deg, #0f1a2a 0%, #122038 50%, #142845 100%);
+
+    --texture-line: rgba(255, 255, 255, 0.04);
+    --texture-clear: rgba(0, 0, 0, 0);
+
+    --glass-border-color: rgba(111, 164, 240, 0.30);
+    --glass-border-strong: rgba(137, 185, 252, 0.56);
+    --glass-shadow-color: rgba(0, 0, 0, 0.38);
+    --glass-shadow-soft: rgba(0, 0, 0, 0.30);
+
+    --input-bg: rgba(29, 46, 74, 0.94);
+    --button-bg: rgba(45, 67, 102, 0.94);
+    --table-bg: rgba(30, 47, 73, 0.90);
+
+    --app-header-bg: rgba(40, 60, 93, 0.88);
+    --app-header-border: rgba(111, 164, 240, 0.34);
+    --sidebar-bg: rgba(32, 49, 76, 0.90);
+    --sidebar-border: rgba(111, 164, 240, 0.30);
+    --sidebar-text: #c9e0ff;
+    --sidebar-hover-bg: rgba(48, 72, 108, 0.94);
+    --sidebar-hover-border: rgba(137, 185, 252, 0.80);
+    --sidebar-active-bg: rgba(65, 94, 138, 0.96);
+    --sidebar-active-border: rgba(150, 195, 255, 0.95);
+    --sidebar-active-text: #f0f7ff;
+    --app-content-bg: rgba(24, 38, 60, 0.76);
+
+    --messages-panel-bg: rgba(39, 59, 91, 0.74);
+    --messages-panel-border: rgba(111, 164, 240, 0.26);
+    --messages-header-border: rgba(111, 164, 240, 0.30);
+    --messages-header-bg: rgba(51, 75, 114, 0.70);
+    --messages-scrollbar-thumb: rgba(137, 185, 252, 0.36);
+    --messages-mobile-divider: rgba(111, 164, 240, 0.36);
+
+    --chat-item-border: rgba(111, 164, 240, 0.22);
+    --chat-item-hover-bg: rgba(56, 82, 122, 0.94);
+    --chat-item-hover-border: rgba(137, 185, 252, 0.54);
+    --chat-item-active-bg: rgba(74, 106, 154, 0.96);
+    --chat-item-active-border: rgba(150, 195, 255, 0.80);
+
+    --message-sent-bg: rgba(72, 120, 190, 0.94);
+    --message-sent-text: #eef6ff;
+    --message-sent-border: rgba(150, 195, 255, 0.58);
+    --message-received-bg: rgba(46, 69, 104, 0.94);
+    --message-received-text: #d8e8ff;
+    --message-received-border: rgba(111, 164, 240, 0.38);
+    --message-deleted-text: #a9c6ee;
+
+    --composer-border: rgba(111, 164, 240, 0.32);
+    --composer-bg: rgba(38, 57, 88, 0.82);
+    --composer-input-border: rgba(111, 164, 240, 0.40);
+    --composer-input-bg: rgba(29, 46, 74, 0.96);
+    --composer-input-focus: rgba(150, 195, 255, 0.90);
+    --composer-send-bg: rgba(74, 126, 198, 0.96);
+    --composer-send-text: #eef6ff;
+
+    --users-card-bg: rgba(42, 63, 97, 0.88);
+    --users-card-border: rgba(111, 164, 240, 0.34);
+    --users-card-shadow: rgba(0, 0, 0, 0.26);
+    --users-divider: rgba(111, 164, 240, 0.24);
+    --users-text: #d8e8ff;
+    --users-add-bg: rgba(74, 126, 198, 0.96);
+    --users-add-text: #eef6ff;
+    --users-add-hover-bg: rgba(96, 147, 219, 0.98);
+    --users-add-hover-shadow: rgba(0, 0, 0, 0.32);
+    --users-button-hover-bg: rgba(56, 82, 122, 0.96);
+    --users-delete-hover-bg: rgba(179, 79, 91, 0.80);
+
+    --color-error: #ff6ca8;
+}

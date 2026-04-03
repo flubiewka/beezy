@@ -21,3 +21,4 @@ try {
 require_once __DIR__ . '/db/auth.php';
 require_once __DIR__ . '/db/chat.php';
 require_once __DIR__ . '/db/users.php';
+require_once __DIR__ . '/db/sessions.php';

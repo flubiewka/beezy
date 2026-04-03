@@ -1,30 +1,27 @@
 (function (global) {
-    const App = global.BeezyMessages || {};
+    const app = global.BeezyMessages || {};
 
-    App.initContext = function () {
-        const area = document.getElementById("messages-area");
-        const input = document.getElementById("message-input");
-        const form = document.getElementById("message-form");
-        const chatList = document.getElementById("chat-list");
-        const headerUser = document.getElementById("chat-header-user");
+    app.area = document.getElementById("messages-area");
+    app.input = document.getElementById("message-input");
+    app.form = document.getElementById("message-form");
+    app.chatList = document.getElementById("chat-list");
+    app.headerUser = document.getElementById("chat-header-user");
 
-        if (!area || !input || !form || !chatList || !headerUser) {
-            return null;
-        }
+    app.me = app.area ? app.area.dataset.userLogin || "" : "";
+    app.currentChatId = 0;
+    app.chats = [];
 
-        return {
-            area: area,
-            input: input,
-            form: form,
-            chatList: chatList,
-            headerUser: headerUser,
-            me: area.dataset.userLogin || "",
-            currentChatId: 0,
-            chats: [],
-        };
+    app.isReady = function () {
+        return !!(
+            app.area &&
+            app.input &&
+            app.form &&
+            app.chatList &&
+            app.headerUser
+        );
     };
 
-    App.esc = function (text) {
+    app.escapeHtml = function (text) {
         return String(text)
             .replaceAll("&", "&amp;")
             .replaceAll("<", "&lt;")
@@ -33,41 +30,43 @@
             .replaceAll("'", "&#039;");
     };
 
-    App.scrollToBottom = function (ctx) {
-        ctx.area.scrollTop = ctx.area.scrollHeight;
+    app.avatarUrl = function (seed) {
+        return (
+            "https://api.dicebear.com/9.x/bottts/svg?seed=" +
+            encodeURIComponent(String(seed || "user"))
+        );
     };
 
-    App.request = function (action, fields) {
+    app.scrollToBottom = function () {
+        app.area.scrollTop = app.area.scrollHeight;
+    };
+
+    app.get = async function (action, paramsObj) {
+        const params = new URLSearchParams({ action: action });
+        if (paramsObj) {
+            Object.keys(paramsObj).forEach(function (key) {
+                params.set(key, paramsObj[key]);
+            });
+        }
+        return fetch("api.php?" + params.toString()).then(function (r) {
+            return r.json();
+        });
+    };
+
+    app.post = async function (action, fieldsObj) {
         const data = new FormData();
         data.append("action", action);
-
-        if (fields) {
-            for (const key in fields) {
-                data.append(key, fields[key]);
-            }
+        if (fieldsObj) {
+            Object.keys(fieldsObj).forEach(function (key) {
+                data.append(key, fieldsObj[key]);
+            });
         }
-
         return fetch("api.php", { method: "POST", body: data }).then(
-            function (res) {
-                return res.json();
+            function (r) {
+                return r.json();
             },
         );
     };
 
-    App.requestGet = function (action, fields) {
-        const params = new URLSearchParams();
-        params.set("action", action);
-
-        if (fields) {
-            for (const key in fields) {
-                params.set(key, fields[key]);
-            }
-        }
-
-        return fetch("api.php?" + params.toString()).then(function (res) {
-            return res.json();
-        });
-    };
-
-    global.BeezyMessages = App;
+    global.BeezyMessages = app;
 })(window);

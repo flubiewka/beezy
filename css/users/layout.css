@@ -17,9 +17,11 @@
     width: 33.33%;
     gap: 15px;
     padding: 15px;
-    border-radius: 10px;
-    background-color: var(--color-light);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 14px;
+    background: var(--users-card-bg);
+    border: 1px solid var(--users-card-border);
+    box-shadow: 0 12px 24px var(--users-card-shadow);
+    backdrop-filter: blur(10px);
 }
 
 #content-users .user-card {
@@ -32,6 +34,16 @@
     padding-bottom: 15px;
 }
 
+#content-users .chat-item-avatar {
+    width: 48px;
+    height: 48px;
+    margin-right: 12px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: var(--placeholder-bg);
+}
+
 #content-users .user-card::after {
     content: "";
     position: absolute;
@@ -39,7 +51,7 @@
     bottom: 0;
     width: 100%;
     height: 1px;
-    background-color: var(--color-gray-light);
+    background-color: var(--users-divider);
 }
 #content-users .user-card:last-of-type::after {
     display: none;
@@ -54,14 +66,15 @@
 #content-users .user-info h3,
 #content-users .user-info p {
     margin: 0;
+    color: var(--users-text);
 }
 
 #content-users .add {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: var(--color-accent);
-    color: white;
+    background: var(--users-add-bg);
+    color: var(--users-add-text);
     font-size: 24px;
     display: flex;
     align-items: center;
@@ -70,9 +83,9 @@
 }
 
 #content-users .add:hover {
-    background-color: var(--color-yellow);
+    background: var(--users-add-hover-bg);
     transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px var(--users-add-hover-shadow);
 }
 
 #content-users .user-actions {
@@ -97,11 +110,10 @@
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 #content-users button:hover {
-    background-color: var(--color-gray-lighter);
+    background: var(--users-button-hover-bg);
     transform: scale(1.1);
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
     transform: translateY(-1px);
 }
 #content-users button.delete:hover{
-    background-color: rgb(255, 117, 117);
+    background-color: var(--users-delete-hover-bg);
 }

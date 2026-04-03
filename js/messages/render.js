@@ -1,164 +1,166 @@
 (function (global) {
-    const App = global.BeezyMessages || {};
+    const app = global.BeezyMessages || {};
 
-    App.roleLabel = function (roleName) {
-        switch ((roleName || "").toUpperCase()) {
-            case "ADMIN":
-                return "administrator";
-            case "SEKRETARZ":
-                return "sekretarz";
-            case "PRACOWNIK":
-                return "pracownik";
-            default:
-                return "uzytkownik";
-        }
+    const roleMap = {
+        ADMIN: "administrator",
+        SEKRETARZ: "sekretarz",
+        PRACOWNIK: "pracownik",
     };
 
-    App.buildChatHtml = function (chat, isActive) {
-        return (
-            '<div class="chat-item color_4' +
-            (isActive ? " active" : "") +
-            '" data-chat-id="' +
-            Number(chat.ID_CHAT) +
-            '">' +
-            '<div class="chat-item-avatar color_placeholder"></div>' +
-            '<div class="chat-item-info">' +
-            '<div class="chat-item-name">' +
-            App.esc(chat.OTHER_IMIE || "") +
-            " " +
-            App.esc(chat.OTHER_NAZWISKO || "") +
-            "</div>" +
-            '<div class="chat-item-role">' +
-            App.esc(App.roleLabel(chat.OTHER_ROLE_NAME)) +
-            "</div>" +
-            "</div>" +
-            "</div>"
-        );
-    };
+    function roleLabel(roleName) {
+        return roleMap[String(roleName || "").toUpperCase()] || "uzytkownik";
+    }
 
-    App.renderChats = function (ctx) {
-        if (!ctx.chats.length) {
-            ctx.chatList.innerHTML =
+    app.renderChats = function () {
+        if (!app.chats.length) {
+            app.chatList.innerHTML =
                 '<div class="chat-list-empty">Brak aktywnych chatow</div>';
-            ctx.headerUser.textContent = "Brak wybranego chatu";
-            ctx.area.innerHTML = "";
+            app.headerUser.textContent = "Brak wybranego chatu";
+            app.area.innerHTML = "";
             return;
         }
 
-        let html = "";
-        for (const chat of ctx.chats) {
-            html += App.buildChatHtml(
-                chat,
-                Number(chat.ID_CHAT) === Number(ctx.currentChatId),
-            );
-        }
+        const html = app.chats
+            .map(function (chat) {
+                const isActive =
+                    Number(chat.ID_CHAT) === Number(app.currentChatId);
+                return (
+                    '<div class="chat-item color_4' +
+                    (isActive ? " active" : "") +
+                    '" data-chat-id="' +
+                    Number(chat.ID_CHAT) +
+                    '">' +
+                    '<img class="chat-item-avatar" src="' +
+                    app.avatarUrl(chat.OTHER_LOGIN) +
+                    '" alt="Avatar" loading="lazy">' +
+                    '<div class="chat-item-info">' +
+                    '<div class="chat-item-name">' +
+                    app.escapeHtml(chat.OTHER_IMIE || "") +
+                    " " +
+                    app.escapeHtml(chat.OTHER_NAZWISKO || "") +
+                    "</div>" +
+                    '<div class="chat-item-role">' +
+                    app.escapeHtml(roleLabel(chat.OTHER_ROLE_NAME)) +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+                );
+            })
+            .join("");
 
-        ctx.chatList.innerHTML = html;
+        app.chatList.innerHTML = html;
     };
 
-    App.updateHeaderUser = function (ctx) {
-        const selected = ctx.chats.find(function (chat) {
-            return Number(chat.ID_CHAT) === Number(ctx.currentChatId);
+    app.renderHeader = function () {
+        const selected = app.chats.find(function (chat) {
+            return Number(chat.ID_CHAT) === Number(app.currentChatId);
         });
 
         if (!selected) {
-            ctx.headerUser.textContent = "Wybierz chat";
+            app.headerUser.textContent = "Wybierz chat";
             return;
         }
 
-        ctx.headerUser.textContent =
+        app.headerUser.textContent =
             (selected.OTHER_IMIE || "") + " " + (selected.OTHER_NAZWISKO || "");
     };
 
-    App.buildMessageHtml = function (ctx, msg) {
-        const mine = (msg.SENDER_LOGIN || "") === ctx.me;
-        const isDeleted = msg.IS_DELETED == 1 || msg.IS_DELETED === true;
+    app.loadChats = async function () {
+        try {
+            const chats = await app.get("get_chats");
+            app.chats = Array.isArray(chats) ? chats : [];
 
-        const deleteBtn =
-            mine && !isDeleted
-                ? '<button type="button" class="message-delete-btn color_3" data-delete-id="' +
-                  Number(msg.ID_MESSAGE) +
-                  '">&#128465;</button>'
-                : "";
-
-        const contentHtml = isDeleted
-            ? '<em class="message-deleted-info">Wiadomosc zostala usunieta</em>'
-            : App.esc(msg.CONTENT);
-
-        const cssClass =
-            (mine ? "sent" : "received") + (isDeleted ? " deleted" : "");
-
-        const headerHtml = mine
-            ? '<span class="message-author">' +
-              App.esc(msg.IMIE) +
-              " " +
-              App.esc(msg.NAZWISKO) +
-              "</span>" +
-              '<div class="message-avatar color_placeholder"></div>' +
-              deleteBtn
-            : '<div class="message-avatar color_placeholder"></div>' +
-              '<span class="message-author">' +
-              App.esc(msg.IMIE) +
-              " " +
-              App.esc(msg.NAZWISKO) +
-              "</span>" +
-              deleteBtn;
-
-        return (
-            '<div class="message ' +
-            cssClass +
-            '">' +
-            '<div class="message-header-info">' +
-            headerHtml +
-            "</div>" +
-            '<div class="message-content">' +
-            contentHtml +
-            "</div>" +
-            "</div>"
-        );
-    };
-
-    App.refreshMessages = function (ctx) {
-        if (!ctx.currentChatId) {
-            ctx.area.innerHTML = "";
-            return Promise.resolve();
+            if (!app.currentChatId && app.chats.length > 0) {
+                app.currentChatId = Number(app.chats[0].ID_CHAT);
+            }
+        } catch (e) {
+            app.chats = [];
+            app.currentChatId = 0;
         }
 
-        return App.requestGet("get_messages", {
-            chat_id: String(ctx.currentChatId),
-        })
-            .then(function (messages) {
-                let html = "";
-
-                for (const msg of messages) {
-                    html += App.buildMessageHtml(ctx, msg);
-                }
-
-                ctx.area.innerHTML = html;
-                App.scrollToBottom(ctx);
-            })
-            .catch(function () {});
+        app.renderChats();
+        app.renderHeader();
     };
 
-    App.loadChats = function (ctx) {
-        return App.requestGet("get_chats")
-            .then(function (chats) {
-                ctx.chats = Array.isArray(chats) ? chats : [];
+    app.loadMessages = async function () {
+        if (!app.currentChatId) {
+            app.area.innerHTML = "";
+            return;
+        }
 
-                if (!ctx.currentChatId && ctx.chats.length) {
-                    ctx.currentChatId = Number(ctx.chats[0].ID_CHAT);
-                }
-
-                App.renderChats(ctx);
-                App.updateHeaderUser(ctx);
-            })
-            .catch(function () {
-                ctx.chats = [];
-                ctx.currentChatId = 0;
-                App.renderChats(ctx);
-                App.updateHeaderUser(ctx);
+        try {
+            const messages = await app.get("get_messages", {
+                chat_id: String(app.currentChatId),
             });
+
+            const html = messages
+                .map(function (msg) {
+                    const mine = (msg.SENDER_LOGIN || "") === app.me;
+                    const isDeleted =
+                        msg.IS_DELETED == 1 || msg.IS_DELETED === true;
+                    const cssClass =
+                        (mine ? "sent" : "received") +
+                        (isDeleted ? " deleted" : "");
+
+                    let deleteBtn = "";
+                    if (mine && !isDeleted) {
+                        deleteBtn =
+                            '<button type="button" class="message-delete-btn" data-delete-id="' +
+                            Number(msg.ID_MESSAGE) +
+                            '"><img src="../images/icons/delete.svg" alt="Usun"></button>';
+                    }
+
+                    const contentHtml = isDeleted
+                        ? '<em class="message-deleted-info">Wiadomosc zostala usunieta</em>'
+                        : app.escapeHtml(msg.CONTENT);
+
+                    const avatar =
+                        '<img class="message-avatar" src="' +
+                        app.avatarUrl(msg.SENDER_LOGIN) +
+                        '" alt="Avatar" loading="lazy">';
+
+                    let headerHtml = "";
+                    if (mine) {
+                        headerHtml =
+                            '<span class="message-author">' +
+                            app.escapeHtml(msg.IMIE) +
+                            " " +
+                            app.escapeHtml(msg.NAZWISKO) +
+                            "</span>" +
+                            avatar +
+                            deleteBtn;
+                    } else {
+                        headerHtml =
+                            avatar +
+                            '<span class="message-author">' +
+                            app.escapeHtml(msg.IMIE) +
+                            " " +
+                            app.escapeHtml(msg.NAZWISKO) +
+                            "</span>" +
+                            deleteBtn;
+                    }
+
+                    return (
+                        '<div class="message ' +
+                        cssClass +
+                        '">' +
+                        '<div class="message-header-info">' +
+                        headerHtml +
+                        "</div>" +
+                        '<div class="message-content">' +
+                        contentHtml +
+                        "</div>" +
+                        "</div>"
+                    );
+                })
+                .join("");
+
+            app.area.innerHTML = html;
+            app.scrollToBottom();
+        } catch (e) {
+            app.area.innerHTML = "";
+        }
     };
 
-    global.BeezyMessages = App;
+    global.BeezyMessages = app;
 })(window);

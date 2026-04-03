@@ -1,4 +1,30 @@
 .add-user-page {
+    --add-bg-radial-1: var(--page-bg-radial-1);
+    --add-bg-radial-2: var(--page-bg-radial-2);
+    --add-bg-main: var(--page-bg-main);
+    --add-shape-a: linear-gradient(135deg, var(--composer-send-bg), var(--danger-bg));
+    --add-shape-b: linear-gradient(145deg, var(--surface-2), var(--surface-4));
+    --add-shell-bg: var(--surface-2);
+    --add-shell-border: var(--glass-border-color);
+    --add-shell-shadow: var(--glass-shadow-color);
+    --add-link-color: var(--text-secondary);
+    --add-title-color: var(--text-strong);
+    --add-subtitle-color: var(--text-secondary);
+    --add-label-color: var(--text-secondary);
+    --add-input-border: var(--glass-border-color);
+    --add-input-bg: var(--input-bg);
+    --add-input-text: var(--text-strong);
+    --add-input-focus: var(--composer-input-focus);
+    --add-primary-bg: linear-gradient(135deg, var(--composer-send-bg), var(--color-accent));
+    --add-primary-text: var(--text-primary);
+    --add-primary-shadow: var(--glass-shadow-soft);
+    --add-ghost-border: var(--glass-border-color);
+    --add-ghost-text: var(--text-secondary);
+    --add-ghost-bg: var(--surface-1);
+    --add-ghost-hover-bg: var(--surface-2);
+}
+
+.add-user-page {
     min-height: 100vh;
     display: grid;
     place-items: center;
@@ -6,9 +32,9 @@
     position: relative;
     overflow: hidden;
     background:
-        radial-gradient(circle at 10% 15%, rgba(61, 194, 236, 0.28), transparent 38%),
-        radial-gradient(circle at 85% 90%, rgba(254, 205, 52, 0.32), transparent 40%),
-        linear-gradient(140deg, #f6f7f8 0%, #eceff1 52%, #e6eaee 100%);
+        var(--add-bg-radial-1),
+        var(--add-bg-radial-2),
+        var(--add-bg-main);
 }
 
 .ambient-shape {
@@ -24,7 +50,7 @@
     height: 260px;
     top: -90px;
     right: -70px;
-    background: linear-gradient(135deg, #ffd86f, #fc6262);
+    background: var(--add-shape-a);
     transform: rotate(-14deg);
 }
 
@@ -33,16 +59,16 @@
     height: 230px;
     left: -70px;
     bottom: -90px;
-    background: linear-gradient(145deg, #70e1f5, #3dc2ec);
+    background: var(--add-shape-b);
     transform: rotate(18deg);
 }
 
 .add-user-shell {
     width: min(760px, 100%);
-    background: rgba(255, 255, 255, 0.82);
+    background: var(--add-shell-bg);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.68);
-    box-shadow: 0 22px 46px rgba(31, 43, 55, 0.17);
+    border: 1px solid var(--add-shell-border);
+    box-shadow: 0 22px 46px var(--add-shell-shadow);
     border-radius: 22px;
     padding: 28px;
     position: relative;
@@ -57,7 +83,7 @@
 .back-link {
     display: inline-block;
     text-decoration: none;
-    color: #314351;
+    color: var(--add-link-color);
     font-size: 13px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -68,12 +94,12 @@
     margin: 0;
     font-size: clamp(28px, 5vw, 40px);
     line-height: 1.06;
-    color: #182534;
+    color: var(--add-title-color);
 }
 
 .add-user-header p {
     margin: 10px 0 0;
-    color: #4c6073;
+    color: var(--add-subtitle-color);
     max-width: 58ch;
 }
 
@@ -90,18 +116,18 @@
 }
 
 .field-row label {
-    color: #2c3f4d;
+    color: var(--add-label-color);
     font-size: 14px;
 }
 
 .field-row input,
 .field-row select {
     width: 100%;
-    border: 1px solid #c9d2db;
+    border: 1px solid var(--add-input-border);
     border-radius: 12px;
-    background-color: rgba(255, 255, 255, 0.92);
+    background-color: var(--add-input-bg);
     padding: 12px 14px;
-    color: #102234;
+    color: var(--add-input-text);
     font-size: 16px;
     outline: none;
     transition: border-color 160ms ease, box-shadow 160ms ease, transform 120ms ease;
@@ -109,8 +135,8 @@
 
 .field-row input:focus,
 .field-row select:focus {
-    border-color: #3dc2ec;
-    box-shadow: 0 0 0 4px rgba(61, 194, 236, 0.2);
+    border-color: var(--add-input-focus);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--add-input-focus) 20%, transparent);
     transform: translateY(-1px);
 }
 
@@ -135,9 +161,9 @@
 
 .primary-btn {
     border: none;
-    background: linear-gradient(135deg, #1f9fcb, #3dc2ec);
-    color: #f7fdff;
-    box-shadow: 0 10px 18px rgba(40, 155, 196, 0.3);
+    background: var(--add-primary-bg);
+    color: var(--add-primary-text);
+    box-shadow: 0 10px 18px var(--add-primary-shadow);
 }
 
 .primary-btn:hover {
@@ -145,13 +171,13 @@
 }
 
 .ghost-btn {
-    border: 1px solid #c8d3de;
-    color: #334a5d;
-    background: rgba(255, 255, 255, 0.66);
+    border: 1px solid var(--add-ghost-border);
+    color: var(--add-ghost-text);
+    background: var(--add-ghost-bg);
 }
 
 .ghost-btn:hover {
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--add-ghost-hover-bg);
 }
 
 @keyframes form-enter {

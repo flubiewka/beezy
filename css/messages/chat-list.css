@@ -7,14 +7,17 @@
     padding: 10px;
     border-radius: 8px;
     transition: background-color 0.2s ease;
+    border: 1px solid var(--chat-item-border);
 }
 
 .chat-item:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--chat-item-hover-bg);
+    border-color: var(--chat-item-hover-border);
 }
 
 .chat-item.active {
-    background-color: rgba(0, 0, 0, 0.08);
+    background-color: var(--chat-item-active-bg);
+    border-color: var(--chat-item-active-border);
 }
 
 .chat-item-avatar {
@@ -23,6 +26,8 @@
     margin-right: 10px;
     border-radius: 50%;
     flex-shrink: 0;
+    object-fit: cover;
+    background: var(--placeholder-bg);
 }
 
 .chat-item-info {
@@ -37,6 +42,7 @@
 .chat-item-name {
     font-size: 16px;
     font-weight: bold;
+    color: var(--text-strong);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -45,7 +51,7 @@
 
 .chat-item-role {
     font-size: 12px;
-    color: #666;
+    color: var(--text-secondary);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -54,6 +60,6 @@
 
 .chat-list-empty {
     padding: 14px;
-    color: #666;
+    color: var(--text-secondary);
     font-size: 14px;
 }

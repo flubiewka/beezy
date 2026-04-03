@@ -21,6 +21,8 @@ if (!getUserByLogin($pdo, (string)$_SESSION['user_id'])) {
 
 $_SESSION['user_email'] = (string)$_SESSION['user_id'];
 
+startWorkSession($pdo, (string)$_SESSION['user_id']);
+
 $page = $_GET['page'] ?? 'messages';
 $allowed_pages = ['messages', 'users', 'report', 'calendar', 'notifications', 'settings'];
 

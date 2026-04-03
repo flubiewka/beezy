@@ -13,7 +13,7 @@
         flex-direction: row;
         overflow-x: auto;
         overflow-y: hidden;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid var(--messages-mobile-divider);
     }
 
     .chat-item {

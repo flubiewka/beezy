@@ -1,48 +1,55 @@
 (function (global) {
-    const App = global.BeezyMessages || {};
+    const app = global.BeezyMessages || {};
 
-    App.bindEvents = function (ctx) {
-        ctx.chatList.addEventListener("click", function (e) {
+    app.bindEvents = function () {
+        async function refreshMessages() {
+            await app.loadMessages();
+        }
+
+        app.chatList.addEventListener("click", async function (e) {
             const item = e.target.closest("[data-chat-id]");
             if (!item) {
                 return;
             }
 
             const chatId = Number(item.getAttribute("data-chat-id"));
-            if (!chatId || chatId === Number(ctx.currentChatId)) {
+            if (!chatId) {
                 return;
             }
 
-            ctx.currentChatId = chatId;
-            App.renderChats(ctx);
-            App.updateHeaderUser(ctx);
-            App.refreshMessages(ctx);
+            if (chatId === Number(app.currentChatId)) {
+                return;
+            }
+
+            app.currentChatId = chatId;
+            app.renderChats();
+            app.renderHeader();
+            await refreshMessages();
         });
 
-        ctx.form.addEventListener("submit", function (e) {
+        app.form.addEventListener("submit", async function (e) {
             e.preventDefault();
 
-            if (!ctx.currentChatId) {
+            if (!app.currentChatId) {
                 return;
             }
 
-            const content = ctx.input.value.trim();
+            const content = app.input.value.trim();
             if (!content) {
                 return;
             }
 
-            App.request("send_message", {
-                chat_id: String(ctx.currentChatId),
-                content: content,
-            })
-                .then(function () {
-                    ctx.input.value = "";
-                    App.refreshMessages(ctx);
-                })
-                .catch(function () {});
+            try {
+                await app.post("send_message", {
+                    chat_id: String(app.currentChatId),
+                    content: content,
+                });
+                app.input.value = "";
+                await refreshMessages();
+            } catch (e2) {}
         });
 
-        ctx.area.addEventListener("click", function (e) {
+        app.area.addEventListener("click", async function (e) {
             const btn = e.target.closest("[data-delete-id]");
             if (!btn) {
                 return;
@@ -53,13 +60,14 @@
                 return;
             }
 
-            App.request("delete_message", { message_id: String(messageId) })
-                .then(function () {
-                    App.refreshMessages(ctx);
-                })
-                .catch(function () {});
+            try {
+                await app.post("delete_message", {
+                    message_id: String(messageId),
+                });
+                await refreshMessages();
+            } catch (e2) {}
         });
     };
 
-    global.BeezyMessages = App;
+    global.BeezyMessages = app;
 })(window);

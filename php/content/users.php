@@ -13,14 +13,15 @@ if (isset($_GET['delete_login']) && $_GET['delete_login'] !== '') {
             <?php
             $admins = getUsersByRole($pdo, 1);
             foreach ($admins as $admin) {
+                $avatarUrl = 'https://api.dicebear.com/9.x/bottts/svg?seed=' . rawurlencode((string)$admin['LOGIN']);
                 echo '<div class="user-card">';
-                echo '<div class="chat-item-avatar color_placeholder"></div>';
+                echo '<img class="chat-item-avatar" src="' . htmlspecialchars($avatarUrl) . '" alt="Avatar" loading="lazy">';
                 echo '<div class="user-info">';
                 echo '<h3>' . htmlspecialchars($admin['IMIE'] . ' ' . $admin['NAZWISKO']) . '</h3>';
                 echo '<p>Login: ' . htmlspecialchars($admin['LOGIN']) . '</p>';
                 echo '</div>';
                 echo '<div class="user-actions">';
-                echo '<button type="button" class="write" onclick="window.location.href=\'?page=messages\'""><img src="../images/icons/wiadomosci.svg" alt="Napisz"></button>';
+                echo '<button type="button" class="write" onclick="window.location.href=\'?page=messages&recipient=' . urlencode($admin['LOGIN']) . '\'"><img src="../images/icons/wiadomosci.svg" alt="Napisz"></button>';
                 echo '<button type="button" class="edit" onclick="window.location.href=\'./user_edit/edit_user.php?login=' . urlencode($admin['LOGIN']) . '\'""><img src="../images/icons/edit.svg" alt="Edytuj"></button>';
                 echo '<button type="button" class="delete" onclick="if(confirm(\'Usunac uzytkownika?\')){window.location.href=\'?page=users&delete_login=' . urlencode($admin['LOGIN']) . '\';}"><img src="../images/icons/delete.svg" alt="Usun"></button>';
                 echo '</div>';
@@ -37,14 +38,15 @@ if (isset($_GET['delete_login']) && $_GET['delete_login'] !== '') {
             <?php
             $secretaries = getUsersByRole($pdo, 2);
             foreach ($secretaries as $secretary) {
+                $avatarUrl = 'https://api.dicebear.com/9.x/bottts/svg?seed=' . rawurlencode((string)$secretary['LOGIN']);
                 echo '<div class="user-card">';
-                echo '<div class="chat-item-avatar color_placeholder"></div>';
+                echo '<img class="chat-item-avatar" src="' . htmlspecialchars($avatarUrl) . '" alt="Avatar" loading="lazy">';
                 echo '<div class="user-info">';
                 echo '<h3>' . htmlspecialchars($secretary['IMIE'] . ' ' . $secretary['NAZWISKO']) . '</h3>';
                 echo '<p>Login: ' . htmlspecialchars($secretary['LOGIN']) . '</p>';
                 echo '</div>';
                 echo '<div class="user-actions">';
-                echo '<button type="button" class="write" onclick="window.location.href=\'?page=messages\'""><img src="../images/icons/wiadomosci.svg" alt="Napisz"></button>';
+                echo '<button type="button" class="write" onclick="window.location.href=\'?page=messages&recipient=' . urlencode($secretary['LOGIN']) . '\'"><img src="../images/icons/wiadomosci.svg" alt="Napisz"></button>';
                 echo '<button type="button" class="edit" onclick="window.location.href=\'./user_edit/edit_user.php?login=' . urlencode($secretary['LOGIN']) . '\'""><img src="../images/icons/edit.svg" alt="Edytuj"></button>';
                 echo '<button type="button" class="delete" onclick="if(confirm(\'Usunac uzytkownika?\')){window.location.href=\'?page=users&delete_login=' . urlencode($secretary['LOGIN']) . '\';}"><img src="../images/icons/delete.svg" alt="Usun"></button>';
                 echo '</div>';
@@ -61,14 +63,15 @@ if (isset($_GET['delete_login']) && $_GET['delete_login'] !== '') {
             <?php
             $workers = getUsersByRole($pdo, 3);
             foreach ($workers as $worker) {
+                $avatarUrl = 'https://api.dicebear.com/9.x/bottts/svg?seed=' . rawurlencode((string)$worker['LOGIN']);
                 echo '<div class="user-card">';
-                echo '<div class="chat-item-avatar color_placeholder"></div>';
+                echo '<img class="chat-item-avatar" src="' . htmlspecialchars($avatarUrl) . '" alt="Avatar" loading="lazy">';
                 echo '<div class="user-info">';
                 echo '<h3>' . htmlspecialchars($worker['IMIE'] . ' ' . $worker['NAZWISKO']) . '</h3>';
                 echo '<p>Login: ' . htmlspecialchars($worker['LOGIN']) . '</p>';
                 echo '</div>';
                 echo '<div class="user-actions">';
-                echo '<button type="button" class="write" onclick="window.location.href=\'?page=messages\'""><img src="../images/icons/wiadomosci.svg" alt="Napisz"></button>';
+                echo '<button type="button" class="write" onclick="window.location.href=\'?page=messages&recipient=' . urlencode($worker['LOGIN']) . '\'"><img src="../images/icons/wiadomosci.svg" alt="Napisz"></button>';
                 echo '<button type="button" class="edit" onclick="window.location.href=\'./user_edit/edit_user.php?login=' . urlencode($worker['LOGIN']) . '\'""><img src="../images/icons/edit.svg" alt="Edytuj"></button>';
                 echo '<button type="button" class="delete" onclick="if(confirm(\'Usunac uzytkownika?\')){window.location.href=\'?page=users&delete_login=' . urlencode($worker['LOGIN']) . '\';}"><img src="../images/icons/delete.svg" alt="Usun"></button>';
                 echo '</div>';

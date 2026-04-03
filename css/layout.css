@@ -1,9 +1,26 @@
 #app-background {
     position: fixed;
-    background-color: var(--color-dark-bg);
+    background:
+        var(--app-bg-radial-1),
+        var(--app-bg-radial-2),
+        var(--app-bg-main);
     height: 100vh;
     width: 100vw;
     z-index: -1;
+}
+
+#app-background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        var(--texture-line) 0,
+        var(--texture-line) 2px,
+        var(--texture-clear) 2px,
+        var(--texture-clear) 8px
+    );
+    pointer-events: none;
 }
 
 #app-container {
@@ -21,6 +38,9 @@
     height: 60px;
     padding: 0 20px;
     z-index: 2;
+    background: var(--app-header-bg);
+    border-bottom: 1px solid var(--app-header-border);
+    backdrop-filter: blur(12px);
 }
 
 #app-logo {
@@ -57,6 +77,7 @@
     justify-content: center;
     overflow: hidden;
     transition: color 0.25s ease;
+    border-radius: 12px;
 }
 
 #app-account .logout-link::before {
@@ -66,7 +87,7 @@
     top: 0;
     bottom: 0;
     width: 100%;
-    background: rgb(255, 117, 117);
+    background: var(--danger-bg);
     transform: translateX(-102%);
     transition: transform 0.28s ease;
     z-index: 0;
@@ -77,7 +98,7 @@
 }
 
 #app-account .logout-link:hover {
-    color: #fff;
+    color: var(--text-on-danger);
 }
 
 #app-account .logout-primary,
@@ -155,7 +176,9 @@
     width: auto;
     min-width: 70px;
     padding: 0;
-    background-color: rgb(255, 228, 145);
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--sidebar-border);
+    backdrop-filter: blur(12px);
 }
 
 .sidebar-item {
@@ -169,9 +192,10 @@
     height: 60px;
     cursor: pointer;
     background-color: transparent;
-    border-bottom: 2px solid transparent;
+    border-bottom: 1px solid transparent;
     transition: background-color 0.3s ease;
     transition: border-bottom 0.2s ease;
+    color: var(--sidebar-text);
 }
 
 .sidebar-item img {
@@ -193,23 +217,23 @@
 }
 
 .sidebar-item:hover {
-    background-color: var(--color-yellow);
-    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
-    border-bottom: 2px solid rgb(165, 132, 33);
+    background: var(--sidebar-hover-bg);
+    border-bottom: 1px solid var(--sidebar-hover-border);
 }
 .sidebar-item:hover i
 
 /* todo */
 .sidebar-item.active {
-    background-color: var(--color-yellow);
-    border-bottom: 2px solid rgb(165, 132, 33);
+    background: var(--sidebar-active-bg);
+    border-bottom: 1px solid var(--sidebar-active-border);
+    color: var(--sidebar-active-text);
 }
 
 #app-content {
     display: flex;
     flex: 1;
     z-index: 0;
-    background-color: var(--color-light);
+    background: var(--app-content-bg);
     min-width: 0; 
     min-height: 0; 
 }
