@@ -13,6 +13,10 @@
     background-color: rgba(0, 0, 0, 0.05);
 }
 
+.chat-item.active {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
 .chat-item-avatar {
     width: 60px;
     height: 60px;
@@ -46,4 +50,10 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     min-width: 0;
+}
+
+.chat-list-empty {
+    padding: 14px;
+    color: #666;
+    font-size: 14px;
 }

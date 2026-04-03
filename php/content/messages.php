@@ -1,21 +1,11 @@
 ﻿<div id="content-messages" class="content-section active">
-    <div class="chat-list box-TEMPLATE color_2">
-        <div class="chat-item color_4">
-            <div class="chat-item-avatar color_placeholder"></div>
-            <div class="chat-item-info">
-                <div class="chat-item-name">
-                    <?php echo htmlspecialchars(($_SESSION['imie'] ?? '') . ' ' . ($_SESSION['nazwisko'] ?? '')); ?>
-                </div>
-                <div class="chat-item-role">uzytkownik</div>
-            </div>
-        </div>
-    </div>
+    <div id="chat-list" class="chat-list box-TEMPLATE color_2"></div>
 
     <div class="message-container box-TEMPLATE color_2">
         <div class="message-header color_3">
             <div class="message-header-user">
-                <button type="button" class="message-header-button color_3">
-                    <?php echo htmlspecialchars(($_SESSION['imie'] ?? '') . ' ' . ($_SESSION['nazwisko'] ?? '')); ?>
+                <button type="button" id="chat-header-user" class="message-header-button color_3">
+                    Wybierz chat
                 </button>
             </div>
         </div>
@@ -39,4 +29,7 @@
     </div>
 </div>
 
-<script src="../js/messages.js"></script>
+<script src="../js/messages/base.js"></script>
+<script src="../js/messages/render.js"></script>
+<script src="../js/messages/events.js"></script>
+<script src="../js/messages/main.js"></script>

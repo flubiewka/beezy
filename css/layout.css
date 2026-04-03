@@ -33,7 +33,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 15px;
+    padding: 0;
     height: 100%;
     z-index: 3;
 }
@@ -48,6 +48,96 @@
     color: inherit;
     font-size: 14px;
     cursor: pointer;
+}
+
+#app-account .logout-link {
+    position: relative;
+    min-width: 220px;
+    padding: 0 12px;
+    justify-content: center;
+    overflow: hidden;
+    transition: color 0.25s ease;
+}
+
+#app-account .logout-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgb(255, 117, 117);
+    transform: translateX(-102%);
+    transition: transform 0.28s ease;
+    z-index: 0;
+}
+
+#app-account .logout-link:hover::before {
+    transform: translateX(0);
+}
+
+#app-account .logout-link:hover {
+    color: #fff;
+}
+
+#app-account .logout-primary,
+#app-account .logout-hover {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 1;
+}
+
+#app-account .logout-primary {
+    opacity: 1;
+}
+
+#app-account .logout-hover {
+    opacity: 0;
+}
+
+#app-account .logout-link:hover .logout-primary {
+    opacity: 0;
+}
+
+#app-account .logout-link:hover .logout-hover {
+    opacity: 1;
+}
+
+#app-account .logout-login {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#app-account .logout-icon-slot {
+    width: 16px;
+    height: 16px;
+    border: 2px solid currentColor;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+}
+
+#app-account .logout-icon-slot::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(45deg);
+    margin-right: -2px;
 }
 
 #app-main {
@@ -146,6 +236,11 @@
 #app-account {
         width: auto;
         padding: 0 10px;
+    }
+
+    #app-account .logout-link {
+        min-width: 150px;
+        font-size: 12px;
     }
 
 #app-sidebar {

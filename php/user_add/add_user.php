@@ -54,8 +54,8 @@ if (!in_array($role, $allowedRoles, true)) {
                     <label for="role">Rola</label>
                     <select id="role" name="role" required>
                         <option value="1" <?php echo $role === 'admin' ? 'selected' : ''; ?>>Administrator</option>
-                        <option value="3" <?php echo $role === 'secretary' ? 'selected' : ''; ?>>Recepcjonista</option>
-                        <option value="2" <?php echo $role === 'worker' ? 'selected' : ''; ?>>Pracownik</option>
+                        <option value="2" <?php echo $role === 'secretary' ? 'selected' : ''; ?>>Recepcjonista</option>
+                        <option value="3" <?php echo $role === 'worker' ? 'selected' : ''; ?>>Pracownik</option>
                     </select>
                 </div>
 
