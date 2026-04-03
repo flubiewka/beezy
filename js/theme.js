@@ -11,7 +11,15 @@
         const link = document.getElementById(LINK_ID);
 
         if (link) {
-            link.href = "/me-u/css/theme-" + safeTheme + ".css";
+            const currentHref = String(link.getAttribute("href") || "");
+            const nextHref = currentHref.replace(
+                /theme-(light|dark)\.css$/,
+                "theme-" + safeTheme + ".css",
+            );
+            link.setAttribute(
+                "href",
+                nextHref || "theme-" + safeTheme + ".css",
+            );
         }
 
         document.documentElement.setAttribute("data-theme", safeTheme);

@@ -23,6 +23,19 @@ function clearSession() {
 function handleGet($pdo, $userLogin) {
     $action = $_GET['action'] ?? 'get_messages';
 
+    if ($action === 'get_work_logs') {
+        $requestedLogin = trim((string)($_GET['login'] ?? ''));
+        $targetLogin = $requestedLogin !== '' ? $requestedLogin : (string)$userLogin;
+        $canViewAll = canViewAllSessions($_SESSION['role_id'] ?? 0);
+
+        if (!$canViewAll && $targetLogin !== (string)$userLogin) {
+            respond(['success' => false, 'error' => 'Brak uprawnien']);
+        }
+
+        $logs = getWorkLogsByLogin($pdo, $targetLogin);
+        respond(['success' => true, 'logs' => $logs]);
+    }
+
     if ($action === 'get_or_create_direct_chat') {
         $recipient = trim((string)($_GET['recipient'] ?? ''));
         $chatId = getOrCreateDirectChat($pdo, $userLogin, $recipient);

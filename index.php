@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="css/common.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
 
-    <link id="theme-colors" href="/me-u/css/theme-light.css" rel="stylesheet">
+    <link id="theme-colors" href="css/theme-light.css" rel="stylesheet">
     <script src="js/theme.js"></script>
 </head>
 <body>

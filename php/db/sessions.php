@@ -75,6 +75,32 @@ function getMonthlyWorkSummary($sessions, $viewerLogin) {
     return $summary;
 }
 
+function getWorkLogsByLogin($pdo, $login, $limit = 0) {
+    $sql = 'SELECT
+                ws.ID_SESSION,
+                ws.LOGIN,
+                u.IMIE,
+                u.NAZWISKO,
+                ws.START_TIME,
+                ws.END_TIME,
+                GREATEST(TIMESTAMPDIFF(SECOND, ws.START_TIME, COALESCE(ws.END_TIME, NOW())), 0) AS DURATION_SECONDS
+            FROM WORK_SESSIONS ws
+            JOIN USERS u ON u.LOGIN = ws.LOGIN
+            WHERE ws.LOGIN = ?
+            ORDER BY ws.START_TIME DESC';
+
+    $params = [$login];
+
+    if ((int)$limit > 0) {
+        $sql .= ' LIMIT ?';
+        $params[] = (int)$limit;
+    }
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
+    return $stmt->fetchAll();
+}
+
 function formatWorkDuration($seconds) {
     $seconds = max(0, (int)$seconds);
     $hours = intdiv($seconds, 3600);

@@ -4,7 +4,6 @@
 
         <div class="settings-card">
             <h3>Motyw</h3>
-            <p>Przelacz miedzy light i dark. Zmiana zapisuje sie automatycznie.</p>
 
             <div class="settings-row">
                 <div class="theme-toggle-row">

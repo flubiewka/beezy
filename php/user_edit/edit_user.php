@@ -50,13 +50,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Beezy - Edytuj uzytkownika</title>
     <link href="../../css/common.css" rel="stylesheet">
     <link href="../../css/users/add-user.css" rel="stylesheet">
-    <link id="theme-colors" href="/me-u/css/theme-light.css" rel="stylesheet">
+    <link id="theme-colors" href="../../css/theme-light.css" rel="stylesheet">
     <script src="../../js/theme.js"></script>
 </head>
 <body>
     <div class="add-user-page">
         <div class="ambient-shape ambient-shape-a" aria-hidden="true"></div>
         <div class="ambient-shape ambient-shape-b" aria-hidden="true"></div>
+        
 
         <main class="add-user-shell">
             <header class="add-user-header">
