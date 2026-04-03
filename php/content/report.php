@@ -49,7 +49,7 @@ $monthLabel = date('m.Y');
 $renderTs = time();
 ?>
 
-<div id="content-raport" class="content-section" data-render-ts="<?php echo (int)$renderTs; ?>" data-current-login="<?php echo htmlspecialchars($currentLogin); ?>">
+<div id="content-raport" class="content-section" data-render-ts="<?php echo (int)$renderTs; ?>" data-current-login="<?php echo htmlspecialchars($currentLogin); ?>" data-api-url="<?php echo htmlspecialchars($appBaseUrl . '/php/api.php'); ?>">
     <div class="report-shell">
         <h2>Raport czasu pracy</h2>
         <p>Miesiac: <?php echo htmlspecialchars($monthLabel); ?></p>
@@ -134,5 +134,5 @@ $renderTs = time();
         <?php endif; ?>
     </div>
 </div>
-<script src="../js/content/report.js"></script>
+<script src="<?php echo htmlspecialchars($appBaseUrl . '/js/content/report.js'); ?>"></script>
 

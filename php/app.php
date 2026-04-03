@@ -3,6 +3,13 @@ session_start();
 
 require_once __DIR__ . '/db.php';
 
+$scriptName = str_replace('\\', '/', (string)($_SERVER['SCRIPT_NAME'] ?? ''));
+$scriptDir = str_replace('\\', '/', dirname($scriptName));
+$appBaseUrl = preg_replace('#/php(?:/.*)?$#', '', $scriptDir);
+if ($appBaseUrl === '/' || $appBaseUrl === '.') {
+    $appBaseUrl = '';
+}
+
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../index.php');
     exit;

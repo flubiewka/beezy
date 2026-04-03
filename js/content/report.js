@@ -5,6 +5,7 @@
     }
 
     const renderTs = Number(root.dataset.renderTs || 0);
+    const apiUrl = root.dataset.apiUrl || "api.php";
     if (renderTs <= 0) {
         return;
     }
@@ -189,7 +190,8 @@
 
         try {
             const response = await fetch(
-                "api.php?action=get_work_logs&login=" +
+                apiUrl +
+                    "?action=get_work_logs&login=" +
                     encodeURIComponent(login),
                 {
                     credentials: "same-origin",

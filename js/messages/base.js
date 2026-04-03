@@ -8,6 +8,7 @@
     app.headerUser = document.getElementById("chat-header-user");
 
     app.me = app.area ? app.area.dataset.userLogin || "" : "";
+    app.apiUrl = app.area ? app.area.dataset.apiUrl || "api.php" : "api.php";
     app.currentChatId = 0;
     app.chats = [];
 
@@ -48,7 +49,7 @@
                 params.set(key, paramsObj[key]);
             });
         }
-        return fetch("api.php?" + params.toString()).then(function (r) {
+        return fetch(app.apiUrl + "?" + params.toString()).then(function (r) {
             return r.json();
         });
     };
@@ -61,7 +62,7 @@
                 data.append(key, fieldsObj[key]);
             });
         }
-        return fetch("api.php", { method: "POST", body: data }).then(
+        return fetch(app.apiUrl, { method: "POST", body: data }).then(
             function (r) {
                 return r.json();
             },

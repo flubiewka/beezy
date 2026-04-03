@@ -14,6 +14,7 @@
             id="messages-area"
             class="messages-area color_5"
             data-user-login="<?php echo htmlspecialchars($_SESSION['user_email'] ?? ''); ?>"
+            data-api-url="<?php echo htmlspecialchars($appBaseUrl . '/php/api.php'); ?>"
         ></div>
 
         <form id="message-form" class="message-footer color_3">
@@ -29,7 +30,7 @@
     </div>
 </div>
 
-<script src="../js/messages/base.js"></script>
-<script src="../js/messages/render.js"></script>
-<script src="../js/messages/events.js"></script>
-<script src="../js/messages/main.js"></script>
+<script src="<?php echo htmlspecialchars($appBaseUrl . '/js/messages/base.js'); ?>"></script>
+<script src="<?php echo htmlspecialchars($appBaseUrl . '/js/messages/render.js'); ?>"></script>
+<script src="<?php echo htmlspecialchars($appBaseUrl . '/js/messages/events.js'); ?>"></script>
+<script src="<?php echo htmlspecialchars($appBaseUrl . '/js/messages/main.js'); ?>"></script>
