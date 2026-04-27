@@ -48,7 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div id="login-container">
         <div class="login-box">
-            <h1 class="login-title">Beezy</h1>
+            <div class="header">
+                <img src="./images/color-logo.svg">
+                <h1 class="login-title">Beezy</h1>                
+            </div>
 
             <?php if ($error): ?>
                 <div class="login-error">
