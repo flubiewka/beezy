@@ -25,7 +25,12 @@
                 placeholder="Wpisz wiadomosc"
                 autocomplete="off"
             >
-            <button type="submit" class="message-send-btn color_3">Wyslij</button>
+            <button type="submit" class="message-send-btn color_3">Wyślij</button>
+<?php if (($_SESSION['role_id'] ?? 0) == 2): ?>
+    <button type="button" class="message-urgent-btn color_3" id="urgent-send-btn">
+        &#9888; Pilne
+    </button>
+<?php endif; ?>
         </form>
     </div>
 </div>
@@ -34,3 +39,33 @@
 <script src="<?php echo htmlspecialchars($appBaseUrl . '/js/messages/render.js'); ?>"></script>
 <script src="<?php echo htmlspecialchars($appBaseUrl . '/js/messages/events.js'); ?>"></script>
 <script src="<?php echo htmlspecialchars($appBaseUrl . '/js/messages/main.js'); ?>"></script>
+
+<script>
+(function() {
+    const urgentBtn = document.getElementById('urgent-send-btn');
+    if (!urgentBtn) return;
+    urgentBtn.addEventListener('click', function() {
+        const app = window.BeezyMessages;
+        if (!app || !app.currentChatId) return;
+        const content = app.input.value.trim();
+        if (!content) return;
+        app.post('send_message', {
+            chat_id: app.currentChatId,
+            content: content,
+            is_urgent: '1'
+        }).then(function(res) {
+            if (res.success) {
+                app.input.value = '';
+                app.get('get_messages', { chat_id: app.currentChatId })
+                   .then(function(data) {
+                       if (data && data.messages) {
+                           app.area.innerHTML = '';
+                           data.messages.forEach(app.renderMessage);
+                           app.scrollToBottom();
+                       }
+                   });
+            }
+        });
+    });
+})();
+</script>

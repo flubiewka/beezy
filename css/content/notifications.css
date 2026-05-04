@@ -1,9 +1,128 @@
 #content-notifications .notifications-shell {
     padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-@media (max-width: 768px) {
-    #content-notifications .notifications-shell {
-        padding: 16px;
-    }
+.notif-card {
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Nagłówek nad listą */
+    width: 100%;
+}
+
+.notif-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.notif-card-title {
+    font-size: .9rem;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.notif-list {
+    list-style: none;
+    margin: 0; 
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.notif-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    position: relative;
+    border-left: 3px solid transparent;
+}
+
+.notif-item--urgent {
+    border-left: 3px solid #ef4444;
+}
+
+.notif-avatar {
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 700;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.notif-avatar--urgent { background: #ef4444; }
+
+.notif-body { 
+    flex: 1; 
+    min-width: 0; 
+    padding-right: 50px; /* Miejsce na napis PILNE, żeby nie nachodził na datę */
+}
+
+.notif-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+.notif-sender {
+    font-size: .83rem;
+    font-weight: 600;
+}
+
+.notif-time {
+    font-size: .75rem;
+    opacity: 0.5;
+}
+
+.notif-content {
+    margin: 0;
+    font-size: .83rem;
+    line-height: 1.4;
+    opacity: .8;
+}
+
+/* Naprawa etykiety PILNE */
+.notif-urgent-pill {
+    position: absolute;
+    top: 12px; 
+    right: 12px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: .62rem;
+    font-weight: 800;
+    background: rgba(239,68,68,0.1);
+    color: #ef4444;
+    text-transform: uppercase;
+}
+
+.notif-empty {
+    padding: 40px;
+    text-align: center;
+    opacity: 0.5;
+}
+
+@media (max-width: 600px) {
+    .notif-meta { flex-direction: column; align-items: flex-start; gap: 2px; }
+    .notif-body { padding-right: 0; }
+    .notif-urgent-pill { position: static; display: inline-block; margin-top: 5px; }
 }

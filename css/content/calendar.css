@@ -1,9 +1,90 @@
-#content-calendar .calendar-shell {
-    padding: 30px;
+/* Zmodyfikowana powłoka - wyśrodkowanie */
+#content-calendar .calendar-shell-centered {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
 }
 
+/* Zwiększona karta kalendarza */
+.calendar-shell-centered .cal-card {
+    width: 100%;
+    max-width: 1000px; /* Szerokość kalendarza */
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Powiększona nawigacja */
+.cal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.cal-nav-title {
+    font-size: 1.6rem; /* Większy napis miesiąca */
+    font-weight: 700;
+    letter-spacing: .02em;
+}
+.cal-nav-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+
+/* Siatka kalendarza - większe odstępy */
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px;
+}
+
+.cal-header-cell {
+    font-size: .9rem;
+    opacity: .6;
+    padding-bottom: 15px;
+}
+
+/* Komórki dni - teraz są większe i czytelniejsze */
+.cal-cell {
+    aspect-ratio: 1 / 0.8; /* Bardziej prostokątny kształt, lepiej wypełnia ekran */
+    border-radius: 12px;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(128, 128, 128, 0.05);
+}
+
+/* Dzisiejszy dzień */
+.cal-cell--today .cal-day-num {
+    background: var(--accent, #4f8ef7);
+    color: #fff;
+    border-radius: 50%;
+    width: 40px; 
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cal-day-num {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Kropka obecności */
+.cal-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent, #4f8ef7);
+    margin-top: 6px;
+}
+
+/* Responsywność */
 @media (max-width: 768px) {
-    #content-calendar .calendar-shell {
-        padding: 16px;
-    }
+    .cal-nav-title { font-size: 1.2rem; }
+    .cal-cell { aspect-ratio: 1; }
+    .cal-nav-btn { width: 36px; height: 36px; }
 }
