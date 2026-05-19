@@ -37,8 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Beezy - Logowanie</title>
     <link rel="icon" type="image/png" href="images/color-logo.png">
 
-    <link href="css/common.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
 
     <link id="theme-colors" href="css/theme-light.css" rel="stylesheet">
     <script src="js/theme.js"></script>

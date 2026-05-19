@@ -191,7 +191,7 @@ body::after {
 
 .login-input:focus {
     outline: none;
-    border-color: var(--login-blue-500);
+    border-color: rgb(255, 173, 41);
     box-shadow: 0 0 0 3px var(--login-focus-shadow);
 }
 
@@ -201,8 +201,8 @@ body::after {
     margin-top: 2em;
     border: 0;
     border-radius: 10px;
-    background: #ff9d00;
-    background: linear-gradient(0deg, rgb(255, 173, 41) 0%, rgb(255, 205, 23) 100%);
+    background: red;
+    /* background: linear-gradient(0deg, rgb(255, 173, 41) 0%, rgb(255, 205, 23) 100%); */
     color: var(--login-blue-900);
     font-size: 16px;
     font-weight: 700;
