@@ -9,12 +9,8 @@ function loginUser($pdo, $login, $password) {
     $stmt->execute([$login]);
     $user = $stmt->fetch();
 
-    if (!$user) {
-        return 'Uzytkownik nie znaleziony';
-    }
-
-    if (!password_verify($password, $user['PASSWORD']) && $user['PASSWORD'] !== $password) {
-        return 'Bledny login lub haslo';
+    if ((!password_verify($password, $user['PASSWORD']) && $user['PASSWORD'] !== $password) || !$user) {
+        return 'Błędny login lub hasło.';
     }
 
     return $user;
